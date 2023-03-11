@@ -1,0 +1,80 @@
+﻿@model TaskWebProject.Models.Tasks.StorageNewViewModel
+
+
+<style>
+    .create-task-form div {
+        margin-bottom: 10px;
+    }
+    button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #d0e3f3;
+    }
+    .counter{
+        background-color: #d0e3f3;
+        padding: 3px;
+        border: 2px solid black;
+        width: 150px;
+        margin-left:142px;
+    }
+    .BtnAdd{
+        padding: 3px;
+        width: 150px;
+    }
+
+    .BtnReturn {
+        padding: 3px;
+        width: 150px;
+        margin-left: 132px;
+        margin-right: 30px;
+    }
+
+    .BtnNext {
+        padding: 3px;
+        width: 150px;
+    }
+    TABLE {
+        width: 600px;
+        border-collapse: collapse;
+        background-color: #d0e3f3;
+    }
+    td{width: 150px}
+    TD, TH {
+        padding: 3px; 
+        border: 2px solid black; 
+    }
+</style>
+
+<div class="center">
+
+<form method="post">
+        <fieldset>
+            
+            <div>
+                <button class="BtnAdd" type="submit" name="action" value="Добавить">Добавить нового</button>
+                <button class="BtnAdd" type="submit" name="action" value="Редактировать">Редактировать</button>
+                <label class="counter">Страница № @ViewData["from"] из @ViewData["to"]</label>
+            </div>
+            <table border="1">
+                <tr>
+                    <th>Идентификатор</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Емейл</th>
+                </tr>
+                @foreach (var ppl in Model.People)
+                {
+                    <tr>
+                        <td>@ppl.Id</td>
+                        <td>@ppl.SurName</td>
+                        <td>@ppl.Name</td>
+                        <td>@ppl.Email</td>
+                    </tr>
+                }
+            </table>
+            <button class="BtnReturn" type="submit" name="action" value="Назад">Назад</button>
+            <button class="BtnNext" type="submit" name="action" value="Вперед">Вперед</button>
+        </fieldset>
+</form>
+
+</div>
