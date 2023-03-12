@@ -1,4 +1,4 @@
-﻿@model StorageOfPeople.Models.Storage.StorageViewModel
+﻿@model StorageOfPeople.Models.Storage.UserViewModel
 <style>
     .create-task-form div {
         margin-bottom: 10px;
@@ -37,7 +37,7 @@
             <label for="Subject">Id</label>
             <input type="text" name="Id" value="@Model.Id" />
             @*<input type="submit" name="action" value="Проверить" class="submit" />*@
-            <button class="BtnReturn" type="submit" name="action" value="Проверить">Найти пользователя по id</button>
+            <button class="BtnReturn" type="submit" name="action" value="Check">Найти пользователя по id</button>
         </div>
         <div class="form-element">
             <label for="Subject">Имя</label>
@@ -53,7 +53,7 @@
         </div>
         
         <div>
-            <button class="submit" type="submit" name="action" value="Сохранить">Сохранить</button>
+            <button class="submit" type="submit" name="action" value="Save">Сохранить</button>
         </div>
     </fieldset>
 </form>

@@ -5,21 +5,21 @@ using TaskStorageOfPeople.Logic.Models.Users;
 
 namespace TaskWebProject.Models.Tasks
 {
-    public class StorageNewViewModel
+    public class UserNewViewModel
     {
 
         /// <summary>
         /// Исполнитель задачи
         /// </summary>
-        public List<StorageViewModel> People { get; set; }
+        public List<UserViewModel> People { get; set; }
 
 
-        public StorageNewViewModel(List<UserDTO> people)
+        public UserNewViewModel(List<UserDTO> people)
         {
-            People = new List<StorageViewModel>();
+            People = new List<UserViewModel>();
             foreach (var ppl in people)
             {
-                People.Add(new StorageViewModel()
+                People.Add(new UserViewModel()
                 {
                     Id = ppl.Id,
                     Name = ppl.Name,

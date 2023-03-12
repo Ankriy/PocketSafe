@@ -1,4 +1,4 @@
-﻿namespace StorageOfPeople.Models.Storages
+﻿namespace StorageOfPeople.Models.Storage
 {
     public static class CounterViewModel
     {

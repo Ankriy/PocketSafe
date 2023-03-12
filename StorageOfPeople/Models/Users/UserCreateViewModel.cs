@@ -1,6 +1,6 @@
 ﻿namespace StorageOfPeople.Models.Storage
 {
-    public class StorageCreateViewModel
+    public class UserCreateViewModel
     {
         public string Name { get; set; }
         public string SurName { get; set; }

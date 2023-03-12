@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageOfPeople", "StorageOfPeople\StorageOfPeople.csproj", "{5892BE63-CF16-4B19-B9D2-B9F1BBB853EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe", "StorageOfPeople\PocketSafe.csproj", "{5892BE63-CF16-4B19-B9D2-B9F1BBB853EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageOfPeople.Logic", "StorageOfPeople.Logic\StorageOfPeople.Logic.csproj", "{5EFD34AD-CE72-41C2-B509-36A866F7CA39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.Logic", "StorageOfPeople.Logic\PocketSafe.Logic.csproj", "{5EFD34AD-CE72-41C2-B509-36A866F7CA39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

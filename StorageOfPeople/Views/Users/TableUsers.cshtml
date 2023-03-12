@@ -1,4 +1,4 @@
-﻿@model TaskWebProject.Models.Tasks.StorageNewViewModel
+﻿@model TaskWebProject.Models.Tasks.UserNewViewModel
 
 
 <style>
@@ -51,8 +51,8 @@
         <fieldset>
             
             <div>
-                <button class="BtnAdd" type="submit" name="action" value="Добавить">Добавить нового</button>
-                <button class="BtnAdd" type="submit" name="action" value="Редактировать">Редактировать</button>
+                <button class="BtnAdd" type="submit" name="action" value="Add">Добавить нового</button>
+                <button class="BtnAdd" type="submit" name="action" value="Edit">Редактировать</button>
                 <label class="counter">Страница № @ViewData["from"] из @ViewData["to"]</label>
             </div>
             <table border="1">
@@ -72,8 +72,8 @@
                     </tr>
                 }
             </table>
-            <button class="BtnReturn" type="submit" name="action" value="Назад">Назад</button>
-            <button class="BtnNext" type="submit" name="action" value="Вперед">Вперед</button>
+            <button class="BtnReturn" type="submit" name="action" value="Back">Назад</button>
+            <button class="BtnNext" type="submit" name="action" value="Next">Вперед</button>
         </fieldset>
 </form>
 

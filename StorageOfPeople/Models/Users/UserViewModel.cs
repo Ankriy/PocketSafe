@@ -2,7 +2,7 @@
 
 namespace StorageOfPeople.Models.Storage
 {
-    public class StorageViewModel
+    public class UserViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
