@@ -8,7 +8,9 @@ namespace StorageOfPeople.Models.Storage
         public string Name { get; set; }
         public string SurName { get; set; }
         public string Email { get; set; }
-
+        static public int TotalCount { get; set; }
+        static public int Skip { get; set; }
+        static public int Take { get; set; }
         //public StorageViewModel() { }
 
         //public StorageViewModel(UserDTO user)

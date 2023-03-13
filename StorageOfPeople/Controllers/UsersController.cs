@@ -21,18 +21,18 @@ namespace StorageOfPeople.Controllers
         {
             var users = _userService.GetTestUsersList();
 
-            CounterViewModel._To = (ushort)Math.Ceiling((float)users.Count / 10);
-            CounterViewModel._Total = (ushort)users.Count;
+            UserViewModel.Take = (ushort)Math.Ceiling((float)users.Count / 10);
+            UserViewModel.TotalCount = (ushort)users.Count;
 
-            if (users.Count % 10 != 0 && CounterViewModel._From +1  == CounterViewModel._To || CounterViewModel._From == CounterViewModel._To)
-                users = users.GetRange(CounterViewModel._From * 10, users.Count % 10);
+            if (users.Count % 10 != 0 && UserViewModel.Skip +1  == UserViewModel.Take || UserViewModel.Skip == UserViewModel.Take)
+                users = users.GetRange(UserViewModel.Skip * 10, users.Count % 10);
             else
-                users = users.GetRange(CounterViewModel._From * 10, 10);
+                users = users.GetRange(UserViewModel.Skip * 10, 10);
 
             var model = new UserNewViewModel(users);
             
-            ViewData["from"] = CounterViewModel._From + 1;
-            ViewData["to"] = CounterViewModel._To;
+            ViewData["from"] = UserViewModel.Skip + 1;
+            ViewData["to"] = UserViewModel.Take;
 
             return View(model);
         }
@@ -42,15 +42,15 @@ namespace StorageOfPeople.Controllers
             switch (action)
             {
                 case ActionButton.Next:
-                    if (CounterViewModel._From < CounterViewModel._To - 1)
+                    if (UserViewModel.Skip < UserViewModel.Take - 1)
                     {
-                        CounterViewModel._From += 1;
+                        UserViewModel.Skip += 1;
                     }
                     break;
                 case ActionButton.Back:
-                    if (CounterViewModel._From >= 1)
+                    if (UserViewModel.Skip >= 1)
                     {
-                        CounterViewModel._From -= 1;
+                        UserViewModel.Skip -= 1;
                     }
                         break;
                 case ActionButton.Add:
@@ -69,11 +69,11 @@ namespace StorageOfPeople.Controllers
         [HttpPost]
         public IActionResult AddUser(UserCreateViewModel storage)
         {
-            UserDTO user = new UserDTO() { Id= CounterViewModel._Total, Name = storage.Name, SurName = storage.SurName , Email = storage.Email };
+            UserDTO user = new UserDTO() { Id= UserViewModel.TotalCount, Name = storage.Name, SurName = storage.SurName , Email = storage.Email };
             _userService.AddTestUsersList(user);
             return RedirectToAction("TableUsers");
             //return View(storage);
-            //return RedirectToAction("StorageEditPeople", new { id = CounterViewModel._Total });
+            //return RedirectToAction("StorageEditPeople", new { id = UserViewModel.TotalCount });
         }
         [HttpGet]
         public IActionResult EditUser(int id)
