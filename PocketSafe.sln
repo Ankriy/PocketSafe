@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe", "PocketSafe\Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.Logic", "PocketSafe.Logic\PocketSafe.Logic.csproj", "{41A0D2FB-CC2B-4A35-AD4D-89F8E541BD3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketSafe.DAL", "PocketSafe.DAL\PocketSafe.DAL.csproj", "{A0FC9A43-EAAA-4E3D-9C79-F90019386981}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{41A0D2FB-CC2B-4A35-AD4D-89F8E541BD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41A0D2FB-CC2B-4A35-AD4D-89F8E541BD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41A0D2FB-CC2B-4A35-AD4D-89F8E541BD3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0FC9A43-EAAA-4E3D-9C79-F90019386981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0FC9A43-EAAA-4E3D-9C79-F90019386981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0FC9A43-EAAA-4E3D-9C79-F90019386981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0FC9A43-EAAA-4E3D-9C79-F90019386981}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

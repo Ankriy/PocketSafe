@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PocketSafe.DAL\PocketSafe.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

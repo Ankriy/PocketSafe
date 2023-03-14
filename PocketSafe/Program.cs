@@ -1,3 +1,6 @@
+using PocketSafe.DAL;
+using PocketSafe.DAL.Repositories.Abstact;
+using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<UserService>();
+
+builder.Services.AddScoped<UserListService>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddSingleton<UserMockData>();
 
 var app = builder.Build();
 
