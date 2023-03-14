@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StorageOfPeople.Models.Storage;
 using System.Diagnostics.Metrics;
+using System.Reflection;
 using System.Xml.Linq;
 using TaskStorageOfPeople.Logic;
 using TaskStorageOfPeople.Logic.Models.Users;
@@ -72,43 +73,31 @@ namespace StorageOfPeople.Controllers
             UserDTO user = new UserDTO() { Id= UserViewModel.TotalCount, Name = storage.Name, SurName = storage.SurName , Email = storage.Email };
             _userService.AddTestUsersList(user);
             return RedirectToAction("TableUsers");
-            //return View(storage);
-            //return RedirectToAction("StorageEditPeople", new { id = UserViewModel.TotalCount });
         }
         [HttpGet]
-        public IActionResult EditUser(int id)
+        public IActionResult EditUser(int? id)
         {
-            var users = _userService.GetTestUsersList();
-            var user = users.Where(u => u.Id == id).First();
-            var task = new UserViewModel()
+            if(id != null)
             {
-                Id = id,
-                Name = user.Name,
-                SurName = user.SurName,
-                Email = user.Email
-            };
-            return View(task);
+                var user = _userService.GetUser((int)id);
+                var model = new UserViewModel(user);
+                return View(model);
+            }
+            return View(new UserViewModel( new UserDTO()));
         }
         [HttpPost]
-        public IActionResult EditUser(UserEditViewModel users, ActionButton action)
+        public IActionResult EditUser(UserEditViewModel user, ActionButton action)
         {
             var listUsers = _userService.GetTestUsersList();
-            var user = listUsers.Where(u => u.Id == users.Id);
             switch (action)
             {
                 case ActionButton.Check:
-                    return RedirectToAction("EditUser", new { id = users.Id });
+                    return RedirectToAction("EditUser", new { id = user.Id });
                 case ActionButton.Save:
-                    for (int i = 0; i < listUsers.Count; i++)
-                    {
-                        if (listUsers[i].Id == users.Id)
-                        {
-                            listUsers[i].Name = users.Name;
-                            listUsers[i].SurName = users.SurName;
-                            listUsers[i].Email = users.Email;
-                        }
-                    }
-                    _userService.SetTestUsersList(listUsers);
+                    _userService.EditUser(new UserDTO() { Id = user.Id,
+                                                        Name = user.Name,
+                                                        SurName = user.SurName,
+                                                        Email = user.Email});
                     break;
             }
             return RedirectToAction("TableUsers");

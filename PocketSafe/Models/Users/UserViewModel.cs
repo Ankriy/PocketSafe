@@ -12,14 +12,14 @@ namespace StorageOfPeople.Models.Storage
         static public int Skip { get; set; }
         static public int Take { get; set; }
 
-        //public StorageViewModel() { }
+        public UserViewModel() { }
 
-        //public StorageViewModel(UserDTO user)
-        //{
-        //    Id = user.Id;
-        //    Name = user.Name;
-        //    SurName = user.SurName;
-        //    Email = user.Email;
-        //}
+        public UserViewModel(UserDTO user)
+        {
+            Id = user.Id;
+            Name = user.Name;
+            SurName = user.SurName;
+            Email = user.Email;
+        }
     }
 }
