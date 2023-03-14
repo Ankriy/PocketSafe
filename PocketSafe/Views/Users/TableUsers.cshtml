@@ -25,6 +25,10 @@
     .BtnReturn {
         font-size:18px;
     }
+    .divv{
+        width: 800px;
+        text-align: center;
+    }
 
     .BtnNext {
         font-size: 18px;
@@ -70,7 +74,7 @@
                     </tr>
                 }
             </table>
-            <div>
+            <p class="divv">
                 @if (Model.CanBack)
                 {
                     <a class="BtnReturn" href="/Users/?page=@(Model.Page - 1)">Back</a>
@@ -79,7 +83,7 @@
                 {
                     <a class="BtnNext" href="/Users/?page=@(Model.Page + 1)">Forward</a>
                 }
-            </div>
+            </p>
         </fieldset>
 </form>
 
