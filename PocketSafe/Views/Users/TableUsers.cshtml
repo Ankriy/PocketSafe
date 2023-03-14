@@ -30,7 +30,7 @@
         font-size: 18px;
     }
     TABLE {
-        width: 600px;
+        width: 800px;
         border-collapse: collapse;
         background-color: #d0e3f3;
     }
@@ -57,6 +57,7 @@
                     <th>Фамилия</th>
                     <th>Имя</th>
                     <th>Емейл</th>
+                    <th>Редактирование</th>
                 </tr>
                 @foreach (var ppl in Model.Users)
                 {
@@ -65,6 +66,7 @@
                         <td>@ppl.SurName</td>
                         <td>@ppl.Name</td>
                         <td>@ppl.Email</td>
+                        <td> <a href="/Users/EditUser/@ppl.Id">Edit</a></td>
                     </tr>
                 }
             </table>

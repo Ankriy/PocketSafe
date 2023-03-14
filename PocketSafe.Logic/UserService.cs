@@ -1,37 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using PocketSafe.DAL;
+using PocketSafe.DAL.Repositories.Abstact;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskStorageOfPeople.Logic.Models;
 using TaskStorageOfPeople.Logic.Models.Users;
+using T = PocketSafe.DAL.Repositories.Abstact;
 
 namespace TaskStorageOfPeople.Logic
 {
     public class UserService
     {
-        public UserService() { }
-        
+        private IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public List<UserDTO> GetTestUsersList()
         {
-            return TestData.Users;
+            var users = _userRepository.Get(x => true);
+            var list = users.Select(x => new UserDTO()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                SurName = x.SurName,
+                Email = x.Email
+            }).ToList();
+            return list;
         }
-        public void SetTestUsersList(List<UserDTO> users)
-        {
-            TestData.Users = users;
-        }
-        public void AddTestUsersList(UserDTO user)
-        {
-            TestData.Users.Add(user);
-        }
+        
         public int AddUser(UserCreateDTO user)
         {
-            var newUser = new UserDTO()
+            var newUser = new User()
             {
                 Id = user.Id,
                 Name = user.Name,
                 SurName = user.SurName,
                 Email = user.Email
             };
-            AddTestUsersList(newUser);
+            var task = _userRepository.Save(newUser);
             return newUser.Id;
         }
         public UserDTO GetUser(int id)
@@ -45,19 +54,16 @@ namespace TaskStorageOfPeople.Logic
                 Email = user.Email
             }; ;
         }
-        public void EditUser(UserEditDTO user)
+        public object EditUser(UserEditDTO userUpdate)
         {
-            var listUsers = GetTestUsersList();
-            for (int i = 0; i < listUsers.Count; i++)
-            {
-                if (listUsers[i].Id == user.Id)
-                {
-                    listUsers[i].Name = user.Name;
-                    listUsers[i].SurName = user.SurName;
-                    listUsers[i].Email = user.Email;
-                }
-            }
-            SetTestUsersList(listUsers);
+            var listUsers = new User() {
+                Id = userUpdate.Id,
+                Name = userUpdate.Name,
+                SurName = userUpdate.SurName,
+                Email = userUpdate.Email
+            };
+            var user = _userRepository.Save(listUsers);
+            return user.Id;
         }
     }
 }

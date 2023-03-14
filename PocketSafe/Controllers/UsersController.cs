@@ -83,11 +83,14 @@ namespace StorageOfPeople.Controllers
                 case ActionButton.Check:
                     return RedirectToAction("EditUser", new { id = user.Id });
                 case ActionButton.Save:
-                    _userService.EditUser(new UserEditDTO() { Id = user.Id,
-                                                        Name = user.Name,
-                                                        SurName = user.SurName,
-                                                        Email = user.Email});
-                    break;
+                    var taskId = _userService.EditUser(new UserEditDTO()
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        SurName = user.SurName,
+                        Email = user.Email
+                    });
+                    return RedirectToAction("TableUsers");
             }
             return RedirectToAction("TableUsers");
         }
