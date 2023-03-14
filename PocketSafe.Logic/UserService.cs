@@ -24,7 +24,6 @@ namespace TaskStorageOfPeople.Logic
         }
         public int AddUser(UserCreateDTO user)
         {
-            //TestData.Users.Add(user);
             var newUser = new UserDTO()
             {
                 Id = user.Id,
