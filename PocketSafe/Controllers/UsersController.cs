@@ -2,6 +2,7 @@
 using StorageOfPeople.Models.Storage;
 using System.Diagnostics.Metrics;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using TaskStorageOfPeople.Logic;
 using TaskStorageOfPeople.Logic.Models.Users;
@@ -70,9 +71,12 @@ namespace StorageOfPeople.Controllers
         [HttpPost]
         public IActionResult AddUser(UserCreateViewModel storage)
         {
-            UserDTO user = new UserDTO() { Id= UserViewModel.TotalCount, Name = storage.Name, SurName = storage.SurName , Email = storage.Email };
-            _userService.AddTestUsersList(user);
-            return RedirectToAction("TableUsers");
+            var userId = _userService.AddUser(new UserCreateDTO() { 
+                                        Id= UserViewModel.TotalCount, 
+                                        Name = storage.Name, 
+                                        SurName = storage.SurName , 
+                                        Email = storage.Email });
+            return RedirectToAction("EditUser", new { id = userId });
         }
         [HttpGet]
         public IActionResult EditUser(int? id)
@@ -94,7 +98,7 @@ namespace StorageOfPeople.Controllers
                 case ActionButton.Check:
                     return RedirectToAction("EditUser", new { id = user.Id });
                 case ActionButton.Save:
-                    _userService.EditUser(new UserDTO() { Id = user.Id,
+                    _userService.EditUser(new UserEditDTO() { Id = user.Id,
                                                         Name = user.Name,
                                                         SurName = user.SurName,
                                                         Email = user.Email});

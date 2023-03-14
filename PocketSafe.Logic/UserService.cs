@@ -22,20 +22,31 @@ namespace TaskStorageOfPeople.Logic
         {
             TestData.Users.Add(user);
         }
-        public UserDTO GetUser(int id)
+        public int AddUser(UserCreateDTO user)
         {
-            var users = GetTestUsersList();
-            var user = users.Where(u => u.Id == id).First();
-            var _user = new UserDTO()
+            //TestData.Users.Add(user);
+            var newUser = new UserDTO()
             {
-                Id = id,
+                Id = user.Id,
                 Name = user.Name,
                 SurName = user.SurName,
                 Email = user.Email
             };
-            return _user;
+            AddTestUsersList(newUser);
+            return newUser.Id;
         }
-        public void EditUser(UserDTO user)
+        public UserDTO GetUser(int id)
+        {
+            var users = GetTestUsersList();
+            var user = users.Where(u => u.Id == id).First();
+            return new UserDTO(){
+                Id = id,
+                Name = user.Name,
+                SurName = user.SurName,
+                Email = user.Email
+            }; ;
+        }
+        public void EditUser(UserEditDTO user)
         {
             var listUsers = GetTestUsersList();
             for (int i = 0; i < listUsers.Count; i++)
