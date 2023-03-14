@@ -11,6 +11,7 @@ namespace StorageOfPeople.Models.Storage
         static public int TotalCount { get; set; }
         static public int Skip { get; set; }
         static public int Take { get; set; }
+
         //public StorageViewModel() { }
 
         //public StorageViewModel(UserDTO user)
