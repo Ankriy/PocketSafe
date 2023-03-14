@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using StorageOfPeople.Models.Storage;
 using System.Diagnostics.Metrics;
+using System.Drawing;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -13,48 +15,31 @@ namespace StorageOfPeople.Controllers
     public class UsersController : Controller
     {
         private readonly UserService _userService;
-        public UsersController(UserService userService)
+        private readonly UserListService _userListService;
+        public UsersController(UserService userService, UserListService userListService)
         {
             _userService = userService;
+            _userListService = userListService;
         }
 
         [HttpGet]
-        public IActionResult TableUsers()
+        public IActionResult TableUsers([FromQuery(Name = "page")] int page, [FromQuery(Name = "page-size")] int size)
         {
-            var users = _userService.GetTestUsersList();
-
-            UserViewModel.Take = (ushort)Math.Ceiling((float)users.Count / 10);
-            UserViewModel.TotalCount = (ushort)users.Count;
-
-            if (users.Count % 10 != 0 && UserViewModel.Skip +1  == UserViewModel.Take || UserViewModel.Skip == UserViewModel.Take)
-                users = users.GetRange(UserViewModel.Skip * 10, users.Count % 10);
-            else
-                users = users.GetRange(UserViewModel.Skip * 10, 10);
-
-            var model = new UserNewViewModel(users);
-            
-            ViewData["from"] = UserViewModel.Skip + 1;
-            ViewData["to"] = UserViewModel.Take;
+            if (size == 0)
+                size = 10;
+            var skip = page * size;
+            var userList = _userListService.Get(skip, size);
+            var model = new UserListViewModel(userList, page , size);
 
             return View(model);
+
+
         }
         [HttpPost]
         public IActionResult TableUsers(ActionButton action)
         {
             switch (action)
             {
-                case ActionButton.Next:
-                    if (UserViewModel.Skip < UserViewModel.Take - 1)
-                    {
-                        UserViewModel.Skip += 1;
-                    }
-                    break;
-                case ActionButton.Back:
-                    if (UserViewModel.Skip >= 1)
-                    {
-                        UserViewModel.Skip -= 1;
-                    }
-                        break;
                 case ActionButton.Add:
                     return RedirectToAction("AddUser");
                 case ActionButton.Edit:
@@ -62,7 +47,7 @@ namespace StorageOfPeople.Controllers
             }
             return RedirectToAction("TableUsers");
         }
-        
+
         [HttpGet]
         public IActionResult AddUser()
         {
@@ -109,8 +94,6 @@ namespace StorageOfPeople.Controllers
 
         public enum ActionButton
         {
-            Next,
-            Back,
             Add,
             Edit,
             Check,

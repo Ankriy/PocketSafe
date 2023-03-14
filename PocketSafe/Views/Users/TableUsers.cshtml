@@ -1,4 +1,4 @@
-﻿@model TaskWebProject.Models.Tasks.UserNewViewModel
+﻿@model TaskWebProject.Models.Tasks.UserListViewModel
 
 
 <style>
@@ -23,15 +23,11 @@
     }
 
     .BtnReturn {
-        padding: 3px;
-        width: 150px;
-        margin-left: 132px;
-        margin-right: 30px;
+        font-size:18px;
     }
 
     .BtnNext {
-        padding: 3px;
-        width: 150px;
+        font-size: 18px;
     }
     TABLE {
         width: 600px;
@@ -53,7 +49,7 @@
             <div>
                 <button class="BtnAdd" type="submit" name="action" value="Add">Добавить нового</button>
                 <button class="BtnAdd" type="submit" name="action" value="Edit">Редактировать</button>
-                <label class="counter">Страница № @ViewData["from"] из @ViewData["to"]</label>
+                <label class="counter">Всего @Model.TotalCount записей </label>
             </div>
             <table border="1">
                 <tr>
@@ -62,7 +58,7 @@
                     <th>Имя</th>
                     <th>Емейл</th>
                 </tr>
-                @foreach (var ppl in Model.People)
+                @foreach (var ppl in Model.Users)
                 {
                     <tr>
                         <td>@ppl.Id</td>
@@ -72,8 +68,16 @@
                     </tr>
                 }
             </table>
-            <button class="BtnReturn" type="submit" name="action" value="Back">Назад</button>
-            <button class="BtnNext" type="submit" name="action" value="Next">Вперед</button>
+            <div>
+                @if (Model.CanBack)
+                {
+                    <a class="BtnReturn" href="/Users/?page=@(Model.Page - 1)">Back</a>
+                }
+                @if (Model.CanForward)
+                {
+                    <a class="BtnNext" href="/Users/?page=@(Model.Page + 1)">Forward</a>
+                }
+            </div>
         </fieldset>
 </form>
 
