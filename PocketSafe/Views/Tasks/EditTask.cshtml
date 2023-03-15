@@ -18,7 +18,7 @@
         width: 200px;
     }
     label{
-        width: 100px;
+        width: 130px;
     }
     .topdiv{
         margin-bottom:20px;
@@ -34,7 +34,7 @@
 <form method="post" class="create-task-form">
     <fieldset>
         <div class="form-element">
-            <label for="Subject">Id</label>
+            <label for="Id">Id</label>
             <input type="text" name="Id" value="@Model.Id" />
             @*<input type="submit" name="action" value="Проверить" class="submit" />*@
             <button class="BtnReturn" type="submit" name="action" value="Check">Найти пользователя по id</button>
@@ -44,13 +44,14 @@
             <input type="text" name="Subject" value="@Model.Subject"/>
         </div>
         <div class="form-element">
-            <label for="Subject">Описание</label>
-            <input type="text" name="Description" value="@Model.Description" />
+            <label for="Description">Описание</label>
+            <textarea cols="50" rows="10" name="Description">@Model.Description</textarea>
         </div>
         <div class="form-element">
-            <label for="Subject">Id пользователя</label>
+            <label for="UserId">Id пользователя</label>
             <input type="text" name="UserId" value="@Model.UserId" />
         </div>
+
         
         <div>
             <button class="submit" type="submit" name="action" value="Save">Сохранить</button>

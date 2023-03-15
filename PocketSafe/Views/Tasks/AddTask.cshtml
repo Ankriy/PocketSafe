@@ -27,15 +27,15 @@
 <form method="post" class="create-task-form">
     <fieldset>
         <div class="form-element">
-            <label for="Subject">Имя</label>
+            <label for="Subject">Заголовок</label>
             <input type="text" name="Name" value=""/>
         </div>
         <div class="form-element">
-            <label for="Subject">Фамилия</label>
-            <input type="text" name="SurName" value="" />
+            <label for="Subject">Описание</label>
+            <textarea cols="50" rows="10" name="Description">@Model.Description</textarea>
         </div>
         <div class="form-element">
-            <label for="Subject">Емейл</label>
+            <label for="Subject">Id пользователя</label>
             <input type="text" name="Email" value="" />
         </div>
         

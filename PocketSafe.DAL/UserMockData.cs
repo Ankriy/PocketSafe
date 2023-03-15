@@ -9,7 +9,7 @@ namespace PocketSafe.DAL
         public UserMockData()
         {
             _users = new List<User>();
-            for (int i = 1; i < 45; i++)
+            for (int i = 1; i < 23; i++)
             {
                 _users.Add(new User() { Id = i, Name = $"Name {i}", SurName = $"SurName {i}", Email = $"Name{i}SurName{i}@mail.ru" });
             }

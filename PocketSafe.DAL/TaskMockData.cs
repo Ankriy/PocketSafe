@@ -10,7 +10,7 @@ namespace PocketSafe.DAL
         public TaskMockData()
         {
             _tasks = new List<Task>();
-            for (int i = 1; i < 45; i++)
+            for (int i = 1; i < 19; i++)
             {
                 _tasks.Add(new Task() { Id = i, 
                     Description = $"Description of task {i}. Created {DateTime.Now.ToString()}",
