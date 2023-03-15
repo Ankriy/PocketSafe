@@ -14,22 +14,22 @@ namespace StorageOfPeople.Controllers
 {
     public class TasksController : Controller
     {
-        private readonly UserService _userService;
-        private readonly UserListService _userListService;
-        public TasksController(UserService userService, UserListService userListService)
+        private readonly TaskService _taskService;
+        private readonly TaskListService _taskListService;
+        public TasksController(TaskService taskService, TaskListService taskListService)
         {
-            _userService = userService;
-            _userListService = userListService;
+            _taskService = taskService;
+            _taskListService = taskListService;
         }
 
         [HttpGet]
-        public IActionResult TableTasks([FromQuery(Name = "page")] int page, [FromQuery(Name = "page-size")] int size)
+        public IActionResult TableTasks([FromQuery(Name = "page")] int page, [FromQuery(Name = "page-size")] int size,int id)
         {
             if (size == 0)
                 size = 10;
             var skip = page * size;
-            var userList = _userListService.Get(skip, size);
-            var model = new UserListViewModel(userList, page , size);
+            var userList = _taskListService.Get(skip, size);
+            var model = new TaskListViewModel(userList, page , size);
 
             return View(model);
 

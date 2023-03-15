@@ -1,4 +1,4 @@
-﻿@model TaskWebProject.Models.Tasks.UserListViewModel
+﻿@model TaskWebProject.Models.Tasks.TaskListViewModel
 
 
 <style>
@@ -74,13 +74,13 @@
                     <th>Емейл</th>
                     <th></th>
                 </tr>
-                @foreach (var ppl in Model.Users)
+                @foreach (var ppl in Model.Tasks)
                 {
                     <tr>
                         <td>@ppl.Id</td>
-                        <td>@ppl.SurName</td>
-                        <td>@ppl.Name</td>
-                        <td>@ppl.Email</td>
+                        <td>@ppl.Subject</td>
+                        <td>@ppl.Description</td>
+                        <td>@ppl.UserId</td>
                         <td>
                             <div>
                                 <a href="/Users/EditUser/@ppl.Id" class="btn">Edit</a>
