@@ -66,6 +66,8 @@ namespace TaskProject.DAL.Repositories
 
             var user = _testUserData.Users.SingleOrDefault(x => x.Id == item.Id);
             user.Name = item.Name;
+            user.SurName = item.SurName;
+            user.Email = item.Email;
             return user;
         }
     }

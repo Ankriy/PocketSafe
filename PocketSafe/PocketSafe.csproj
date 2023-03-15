@@ -10,4 +10,8 @@
     <ProjectReference Include="..\PocketSafe.Logic\PocketSafe.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Tasks\" />
+  </ItemGroup>
+
 </Project>

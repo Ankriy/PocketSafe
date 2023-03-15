@@ -15,6 +15,7 @@ builder.Services.AddScoped<UserListService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddSingleton<UserMockData>();
+builder.Services.AddSingleton<TaskMockData>();
 
 var app = builder.Build();
 

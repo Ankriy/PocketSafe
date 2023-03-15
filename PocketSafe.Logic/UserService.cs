@@ -33,7 +33,7 @@ namespace TaskStorageOfPeople.Logic
         
         public int AddUser(UserCreateDTO user)
         {
-            var newUser = new User()
+            var newUser = new PocketSafe.DAL.User()
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -56,7 +56,7 @@ namespace TaskStorageOfPeople.Logic
         }
         public object EditUser(UserEditDTO userUpdate)
         {
-            var listUsers = new User() {
+            var listUsers = new PocketSafe.DAL.User() {
                 Id = userUpdate.Id,
                 Name = userUpdate.Name,
                 SurName = userUpdate.SurName,
