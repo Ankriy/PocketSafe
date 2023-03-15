@@ -19,7 +19,7 @@ namespace TaskStorageOfPeople.Logic
             _taskRepository = taskRepository;
         }
 
-        public List<TaskDTO> GetTestUsersList()
+        public List<TaskDTO> GetTestTasksList()
         {
             var tasks = _taskRepository.Get(x => true);
             var list = tasks.Select(x => new TaskDTO()
@@ -43,9 +43,9 @@ namespace TaskStorageOfPeople.Logic
             var _task = _taskRepository.Save(newTask);
             return _task.Id;
         }
-        public TaskDTO GetUser(int id)
+        public TaskDTO GetTask(int id)
         {
-            var tasks = GetTestUsersList();
+            var tasks = GetTestTasksList();
             var task = tasks.Where(u => u.Id == id).First();
             return new TaskDTO(){
                 Id = id,
@@ -54,7 +54,7 @@ namespace TaskStorageOfPeople.Logic
                 UserId = task.UserId
             }; ;
         }
-        public object EditUser(TaskEditDTO taskEdit)
+        public object EditTask(TaskEditDTO taskEdit)
         {
             var listTasks = new PocketSafe.DAL.Task() {
                 Id = taskEdit.Id,

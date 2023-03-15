@@ -57,7 +57,7 @@ namespace StorageOfPeople.Controllers
         public IActionResult AddUser(UserCreateViewModel storage)
         {
             var userId = _userService.AddUser(new UserCreateDTO() { 
-                                        Id= UserViewModel.TotalCount, 
+                                        Id= TaskViewModel.TotalCount, 
                                         Name = storage.Name, 
                                         SurName = storage.SurName , 
                                         Email = storage.Email });

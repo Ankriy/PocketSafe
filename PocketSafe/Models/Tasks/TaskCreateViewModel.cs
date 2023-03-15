@@ -1,11 +1,9 @@
-﻿namespace PocketSafe.Logic.Models.Tasks
+﻿namespace StorageOfPeople.Models.Storage
 {
-    public class TaskCreateDTO
+    public class TaskCreateViewModel
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
-
     }
 }
