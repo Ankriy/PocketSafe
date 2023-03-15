@@ -1,0 +1,59 @@
+﻿@model StorageOfPeople.Models.Storage.UserViewModel
+<style>
+    .create-task-form div {
+        margin-bottom: 10px;
+    }
+
+    input {
+        background-color: #d0e3f3;
+        padding: 3px;
+        border: 2px solid black;
+        width: 200px;
+    }
+
+    button {
+        background-color: #d0e3f3;
+        padding: 3px;
+        border: 2px solid black;
+        width: 200px;
+    }
+    label{
+        width: 100px;
+    }
+    .topdiv{
+        margin-bottom:20px;
+    }
+    .submit{
+        margin-left:104px;
+    }
+</style>
+
+<div class="topdiv">Редактирование задания</div>
+
+
+<form method="post" class="create-task-form">
+    <fieldset>
+        <div class="form-element">
+            <label for="Subject">Id</label>
+            <input type="text" name="Id" value="@Model.Id" />
+            @*<input type="submit" name="action" value="Проверить" class="submit" />*@
+            <button class="BtnReturn" type="submit" name="action" value="Check">Найти пользователя по id</button>
+        </div>
+        <div class="form-element">
+            <label for="Subject">Имя</label>
+            <input type="text" name="Name" value="@Model.Name"/>
+        </div>
+        <div class="form-element">
+            <label for="Subject">Фамилия</label>
+            <input type="text" name="SurName" value="@Model.SurName" />
+        </div>
+        <div class="form-element">
+            <label for="Subject">Емейл</label>
+            <input type="text" name="Email" value="@Model.Email" />
+        </div>
+        
+        <div>
+            <button class="submit" type="submit" name="action" value="Save">Сохранить</button>
+        </div>
+    </fieldset>
+</form>

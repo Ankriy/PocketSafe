@@ -9,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TaskService>();
 
 builder.Services.AddScoped<UserListService>();
+builder.Services.AddScoped<TaskListService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();

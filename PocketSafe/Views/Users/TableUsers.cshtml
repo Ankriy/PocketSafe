@@ -37,7 +37,7 @@
         font-size:18px;
     }
     .divv{
-        width: 800px;
+        width: 1100px;
         text-align: center;
     }
 
@@ -45,7 +45,7 @@
         font-size: 18px;
     }
     TABLE {
-        width: 900px;
+        width: 1100px;
         border-collapse: collapse;
         background-color: #d0e3f3;
     }
@@ -84,7 +84,7 @@
                         <td>
                             <div>
                                 <a href="/Users/EditUser/@ppl.Id" class="btn">Edit</a>
-                                <a href="/Tasks/TableTasks/@ppl.Id" class="btn">Task</a>
+                                <a class="btn" asp-controller="Tasks" asp-action="TableTasks">View tasks</a>
                             </div>
                         </td>
                     </tr>
@@ -102,5 +102,5 @@
             </p>
         </fieldset>
 </form>
-
+    @*<a class="btn" asp-controller="Tasks" asp-action="TableTasks">Create new task</a>*@
 </div>

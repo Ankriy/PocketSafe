@@ -69,22 +69,22 @@
             <table border="1">
                 <tr>
                     <th>Идентификатор</th>
-                    <th>Фамилия</th>
-                    <th>Имя</th>
-                    <th>Емейл</th>
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>ID пользователя</th>
                     <th></th>
                 </tr>
-                @foreach (var ppl in Model.Tasks)
+                @foreach (var tsk in Model.Tasks)
                 {
                     <tr>
-                        <td>@ppl.Id</td>
-                        <td>@ppl.Subject</td>
-                        <td>@ppl.Description</td>
-                        <td>@ppl.UserId</td>
+                        <td>@tsk.Id</td>
+                        <td>@tsk.Subject</td>
+                        <td>@tsk.Description</td>
+                        <td>@tsk.UserId</td>
                         <td>
                             <div>
-                                <a href="/Users/EditUser/@ppl.Id" class="btn">Edit</a>
-                                <a href="/Users/EditUser/@ppl.Id" class="btn">Add task</a>
+                                <a href="/Users/EditUser/@tsk.Id" class="btn">Edit</a>
+                                <a href="/Users/EditUser/@tsk.Id" class="btn">Add task</a>
                             </div>
                         </td>
                     </tr>
@@ -93,11 +93,11 @@
             <p class="divv">
                 @if (Model.CanBack)
                 {
-                    <a class="BtnReturn" href="/Users/?page=@(Model.Page - 1)">Back</a>
+                    <a class="BtnReturn" href="/Tasks/TableTasks/?page=@(Model.Page - 1)">Back</a>
                 }
                 @if (Model.CanForward)
                 {
-                    <a class="BtnNext" href="/Users/?page=@(Model.Page + 1)">Forward</a>
+                    <a class="BtnNext" href="/Tasks/TableTasks/?page=@(Model.Page + 1)">Forward</a>
                 }
             </p>
         </fieldset>
