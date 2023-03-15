@@ -13,6 +13,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserListService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 builder.Services.AddSingleton<UserMockData>();
 builder.Services.AddSingleton<TaskMockData>();
