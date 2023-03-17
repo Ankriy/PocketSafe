@@ -26,13 +26,14 @@ namespace StorageOfPeople.Controllers
         }
 
         [HttpGet]
-        public IActionResult TableTasks([FromQuery(Name = "page")] int page, [FromQuery(Name = "page-size")] int size,int id)
+        public IActionResult TableTasks([FromQuery(Name = "page")] int page, [FromQuery(Name = "page-size")] int size, int id)
         {
             if (size == 0)
                 size = 10;
+
             var skip = page * size;
-            var userList = _taskListService.Get(skip, size);
-            var model = new TaskListViewModel(userList, page , size);
+            var userList = _taskListService.Get(skip, size, id);
+            var model = new TaskListViewModel(userList, page , size, id);
 
             return View(model);
 

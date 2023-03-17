@@ -16,7 +16,7 @@ namespace TaskStorageOfPeople.Logic
             _taskRepository = taskRepository;
         }
 
-        public TaskListDTO Get(int skip, int take)
+        public TaskListDTO Get(int skip, int take, int userId)
         {
             var result = new TaskListDTO()
             {
@@ -24,7 +24,7 @@ namespace TaskStorageOfPeople.Logic
                 Take = take
             };
 
-            var count = _taskRepository.GetCount(x => true);
+            var count = _taskRepository.GetCount(x => true,userId);
             result.TotalCount = count;
 
             if (skip > count)
@@ -34,14 +34,14 @@ namespace TaskStorageOfPeople.Logic
             }
 
             result.Tasks = _taskRepository
-                .Get(x => true, skip, take)
-                .Select(x => new TaskDTO()
-                {
-                    Id = x.Id,
-                    Subject = x.Subject,
-                    Description = x.Description,
-                    UserId = x.UserId
-                }).ToList();
+            .Get(x => true, userId, skip, take)
+            .Select(x => new TaskDTO()
+            {
+                Id = x.Id,
+                Subject = x.Subject,
+                Description = x.Description,
+                UserId = x.UserId
+            }).ToList();
 
             return result;
         }

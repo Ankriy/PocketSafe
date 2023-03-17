@@ -45,11 +45,12 @@
         font-size: 18px;
     }
     TABLE {
-        width: 1100px;
+        width: 50%;
+        min-width: 700px;
         border-collapse: collapse;
         background-color: #d0e3f3;
     }
-    td{width: 150px}
+    /*td{width: 150px}*/
     TD, TH {
         padding: 3px; 
         border: 2px solid black; 
@@ -68,7 +69,7 @@
             </div>
             <table border="1">
                 <tr>
-                    <th>Идентификатор</th>
+                    <th>Id</th>
                     <th>Фамилия</th>
                     <th>Имя</th>
                     <th>Емейл</th>
@@ -83,8 +84,9 @@
                         <td>@ppl.Email</td>
                         <td>
                             <div>
-                                <a href="/Users/EditUser/@ppl.Id" class="btn">Edit</a>
-                                <a class="btn" asp-controller="Tasks" asp-action="TableTasks">View tasks</a>
+                                <a href="/Users/EditUser/@ppl.Id" class="btn">Редактировать</a>
+                                <a href="/Tasks/TableTasks/@ppl.Id" class="btn">Задачи</a>
+                                @*<a class="btn" asp-controller="Tasks" asp-action="TableTasks">View tasks</a>*@
                             </div>
                         </td>
                     </tr>

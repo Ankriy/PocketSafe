@@ -10,7 +10,7 @@ namespace TaskWebProject.Models.Tasks
     public class TaskListViewModel
     {
         public List<TaskShortViewModel> Tasks { get; set; }
-
+        public int Id { get; set; }
         public int TotalCount { get; set; }
         public int Page { get; set; }
         public int Size { get; set; }
@@ -23,13 +23,14 @@ namespace TaskWebProject.Models.Tasks
             Tasks = new List<TaskShortViewModel>();
         }
 
-        public TaskListViewModel(TaskListDTO list, int page, int size)
+        public TaskListViewModel(TaskListDTO list, int page, int size, int id)
         {
             Tasks = new List<TaskShortViewModel>();
             foreach (TaskDTO task in list.Tasks)
             {
                 Tasks.Add(new TaskShortViewModel(task));
             }
+            Id = id;
 
             TotalCount = list.TotalCount;
             Page = page;
@@ -38,6 +39,7 @@ namespace TaskWebProject.Models.Tasks
             CanBack = Page > 0;
             CanForward = (Page + 1) * Size < TotalCount;
             CanBack = Page > 0;
+            Id = id;
         }
 
     }

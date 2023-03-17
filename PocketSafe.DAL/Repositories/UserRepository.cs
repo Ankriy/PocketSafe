@@ -46,6 +46,16 @@ namespace TaskProject.DAL.Repositories
                 .Take(take)
                 .ToList();
         }
+        public ICollection<User> Get(Func<User, bool> where, int id, int skip, int take)
+        {
+            return _testUserData
+                .Users
+                .Where(x => id == x.Id)
+                .Where(where)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+        }
 
         public int GetCount(Func<User, bool> where)
         {
@@ -54,7 +64,14 @@ namespace TaskProject.DAL.Repositories
                 .Where(where)
                 .Count();
         }
-
+        public int GetCount(Func<User, bool> where, int id)
+        {
+            return _testUserData
+                .Users
+                .Where(x => x.Id == id)
+                .Where(where)
+                .Count();
+        }
         public User Save(User item)
         {
             if(item.Id <= 0)
