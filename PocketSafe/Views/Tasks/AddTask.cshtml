@@ -28,15 +28,15 @@
     <fieldset>
         <div class="form-element">
             <label for="Subject">Заголовок</label>
-            <input type="text" name="Name" value=""/>
+            <input type="text" name="Subject" value=""/>
         </div>
         <div class="form-element">
             <label for="Subject">Описание</label>
-            <textarea cols="50" rows="10" name="Description">@Model.Description</textarea>
+            <textarea cols="50" rows="10" name="Description"></textarea>
         </div>
         <div class="form-element">
             <label for="Subject">Id пользователя</label>
-            <input type="text" name="Email" value="" />
+            <input type="text" name="UserId" value="@ViewData["UserId"]" />
         </div>
         
         <div>

@@ -53,7 +53,7 @@
     }
     /*td{width: 150px}*/
     td {
-        max-width: 150px;
+        max-width: 250px;
     }
     TD, TH {
         padding: 3px; 
@@ -67,8 +67,6 @@
         <fieldset>
             
             <div>
-                <button class="BtnAdd" type="submit" name="action" value="Add">Добавить нового</button>
-                <button class="BtnAdd" type="submit" name="action" value="Edit">Редактировать</button>
                 <label class="counter">Всего @Model.TotalCount записей </label>
             </div>
             <table border="1" width="100%">
@@ -86,7 +84,8 @@
                         <td>@tsk.Description</td>
                         <td>
                             <div>
-                                <a href="/Tasks/EditTask/@tsk.Id" class="btn">Edit</a>
+                                <a href="/Tasks/EditTask/@tsk.Id" class="btn">Редактировать</a>
+                                <a href="/Tasks/AddTask/@tsk.UserId" class="btn">Добавить</a>
                             </div>
                         </td>
                     </tr>

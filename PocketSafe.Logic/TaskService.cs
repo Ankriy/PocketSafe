@@ -63,7 +63,7 @@ namespace TaskStorageOfPeople.Logic
                 UserId = taskEdit.UserId
             };
             var task = _taskRepository.Save(listTasks);
-            return task.Id;
+            return task.UserId;
         }
     }
 }

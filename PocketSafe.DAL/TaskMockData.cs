@@ -15,7 +15,7 @@ namespace PocketSafe.DAL
 
             Random rnd = new Random();
             var usersCount = _userMockData.Users.Count;
-            for (int i = 1; i < 630; i++)
+            for (int i = 1; i < 300; i++)
             {
                 int contractorId = rnd.Next(1, usersCount);
                 _tasks.Add(new Task() { Id = i, 

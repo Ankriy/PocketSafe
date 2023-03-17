@@ -36,15 +36,8 @@ namespace StorageOfPeople.Controllers
 
         }
         [HttpPost]
-        public IActionResult TableUsers(ActionButton action)
+        public IActionResult TableUsers()
         {
-            switch (action)
-            {
-                case ActionButton.Add:
-                    return RedirectToAction("AddUser");
-                case ActionButton.Edit:
-                    return RedirectToAction("EditUser");
-            }
             return RedirectToAction("TableUsers");
         }
 
@@ -75,32 +68,21 @@ namespace StorageOfPeople.Controllers
             return View(new UserViewModel( new UserDTO()));
         }
         [HttpPost]
-        public IActionResult EditUser(UserEditViewModel user, ActionButton action)
+        public IActionResult EditUser(UserEditViewModel user)
         {
             var listUsers = _userService.GetTestUsersList();
-            switch (action)
+
+            var taskId = _userService.EditUser(new UserEditDTO()
             {
-                case ActionButton.Check:
-                    return RedirectToAction("EditUser", new { id = user.Id });
-                case ActionButton.Save:
-                    var taskId = _userService.EditUser(new UserEditDTO()
-                    {
-                        Id = user.Id,
-                        Name = user.Name,
-                        SurName = user.SurName,
-                        Email = user.Email
-                    });
-                    return RedirectToAction("TableUsers");
-            }
+                Id = user.Id,
+                Name = user.Name,
+                SurName = user.SurName,
+                Email = user.Email
+            });
             return RedirectToAction("TableUsers");
+
         }
 
-        public enum ActionButton
-        {
-            Add,
-            Edit,
-            Check,
-            Save
-        }
+        
     }
 }

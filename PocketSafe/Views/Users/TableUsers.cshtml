@@ -63,8 +63,6 @@
         <fieldset>
             
             <div>
-                <button class="BtnAdd" type="submit" name="action" value="Add">Добавить нового</button>
-                <button class="BtnAdd" type="submit" name="action" value="Edit">Редактировать</button>
                 <label class="counter">Всего @Model.TotalCount записей </label>
             </div>
             <table border="1">
@@ -84,6 +82,7 @@
                         <td>@ppl.Email</td>
                         <td>
                             <div>
+                                <a href="/Users/AddUser/@ppl.Id" class="btn">Добавить</a>
                                 <a href="/Users/EditUser/@ppl.Id" class="btn">Редактировать</a>
                                 <a href="/Tasks/TableTasks/@ppl.Id" class="btn">Задачи</a>
                                 @*<a class="btn" asp-controller="Tasks" asp-action="TableTasks">View tasks</a>*@
