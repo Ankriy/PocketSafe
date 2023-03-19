@@ -1,5 +1,6 @@
 using PocketSafe.DAL;
 using PocketSafe.DAL.Repositories.Abstact;
+using PocketSafe.DAL.Repositories.Mock;
 using PocketSafe.PostgresMigrate;
 using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
@@ -29,8 +30,8 @@ switch (dbType)
         builder.Services.AddSingleton<UserMockData>();
         builder.Services.AddSingleton<TaskMockData>();
 
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+        builder.Services.AddScoped<IUserRepository, UserMockRepository>();
+        builder.Services.AddScoped<ITaskRepository, TaskMockRepository>();
         break;
 }
 

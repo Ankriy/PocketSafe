@@ -1,4 +1,6 @@
-﻿using PocketSafe.DAL;
+﻿using Dapper;
+using Npgsql;
+using PocketSafe.DAL;
 using PocketSafe.DAL.Repositories.Abstact;
 using System;
 using System.Collections.Generic;
@@ -8,85 +10,48 @@ namespace TaskProject.DAL.Repositories
 {
     public class TaskPostgreeRepository : ITaskRepository, IRepository<Task>
     {
-        private TaskMockData _testTaskData;
+        private readonly NpgsqlConnection _connection;
 
-        public TaskPostgreeRepository(TaskMockData testTaskData)
+        public TaskPostgreeRepository(string connectionString)
         {
-            _testTaskData = testTaskData;
+            _connection = new NpgsqlConnection(connectionString);
         }
+        public Task Create(Task item)
+        {
+            //item.CreatedDate = DateTime.UtcNow;
 
+            var query = $"INSERT INTO public.\"Task\"(\"Subject\", \"Description\", \"userId\")" +
+                $"VALUES('{item.Subject}', '{item.Description}','{item.UserId}');" +
+                $"SELECT CAST(SCOPE_IDENTITY() as int)\"";
 
+            item.Id = _connection.ExecuteScalar<int>(query);
+
+            return item;
+        }
         public void Delete(int id)
         {
-            var user = _testTaskData.Tasks.FirstOrDefault(x => x.Id == id);
-            _testTaskData.Tasks.Remove(user);
+            _connection.Execute("DELETE public.\"Task\" WHERE Id = @Id", new { Id = id });
         }
-
         public Task Get(int id)
         {
-            return _testTaskData
-                .Tasks
-                .FirstOrDefault(x => x.Id == id);
+            var user = _connection.Query<Task>($"SELECT * FROM public.\"Task\" WHERE \"Id\" = {id}").FirstOrDefault();
+            return user;
         }
-
-        public ICollection<Task> Get(Func<Task, bool> where)
+        public ICollection<Task> Get(string search, int skip, int take)
         {
-            return _testTaskData
-                .Tasks
-                .Where(where)
-                .ToList();
+            var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%'";
+
+            var users = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            return users ?? new List<Task>();
         }
-
-        public ICollection<Task> Get(Func<Task, bool> where, int skip, int take)
+        public int Count()
         {
-            return _testTaskData
-                .Tasks
-                .Where(where)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
+            var count = _connection.Query($"SELECT * FROM public.\"Task\"").Count();
+            return count;
         }
-        public ICollection<Task> Get(Func<Task, bool> where, int id, int skip, int take)
+        public void Update(Task item)
         {
-            return _testTaskData
-                .Tasks
-                .Where(x => x.UserId == id)
-                .Where(where)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
-        }
-
-        public int GetCount(Func<Task, bool> where)
-        {
-            return _testTaskData
-                .Tasks
-                .Where(where)
-                .Count();
-        }
-        public int GetCount(Func<Task, bool> where, int id)
-        {
-            return _testTaskData
-                .Tasks
-                .Where(x => x.UserId == id)
-                .Where(where)
-                .Count();
-        }
-
-        public Task Save(Task item)
-        {
-            if(item.Id <= 0)
-            {
-                item.Id = _testTaskData.Tasks.Last().Id + 1;
-                _testTaskData.Tasks.Add(item);
-                return item;
-            }
-
-            var task = _testTaskData.Tasks.SingleOrDefault(x => x.Id == item.Id);
-            task.Subject = item.Subject;
-            task.Description = item.Description;
-
-            return task;
+            throw new NotImplementedException();
         }
     }
 }

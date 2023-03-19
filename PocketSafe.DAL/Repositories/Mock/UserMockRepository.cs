@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TaskProject.DAL.Repositories
+namespace PocketSafe.DAL.Repositories.Mock
 {
     public class UserRepository : IUserRepository, IRepository<User>
     {
@@ -74,7 +74,7 @@ namespace TaskProject.DAL.Repositories
         }
         public User Save(User item)
         {
-            if(item.Id <= 0)
+            if (item.Id <= 0)
             {
                 item.Id = _testUserData.Users.Last().Id + 1;
                 _testUserData.Users.Add(item);

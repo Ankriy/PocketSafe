@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TaskProject.DAL.Repositories
+namespace PocketSafe.DAL.Repositories.Mock
 {
     public class TaskRepository : ITaskRepository, IRepository<Task>
     {
@@ -75,7 +75,7 @@ namespace TaskProject.DAL.Repositories
 
         public Task Save(Task item)
         {
-            if(item.Id <= 0)
+            if (item.Id <= 0)
             {
                 item.Id = _testTaskData.Tasks.Last().Id + 1;
                 _testTaskData.Tasks.Add(item);
