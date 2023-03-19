@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace PocketSafe.DAL.Repositories.Mock
 {
-    public class TaskRepository : ITaskRepository, IRepository<Task>
+    public class TaskMockRepository : ITaskRepository, IRepository<Task>
     {
         private TaskMockData _testTaskData;
 
-        public TaskRepository(TaskMockData testTaskData)
+        public TaskMockRepository(TaskMockData testTaskData)
         {
             _testTaskData = testTaskData;
         }

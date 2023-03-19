@@ -17,7 +17,10 @@ namespace TaskStorageOfPeople.Logic
         {
             _userRepository = userRepository;
         }
-
+        public int GetAllCount()
+        {
+            return _userRepository.Count();
+        }
         public List<UserDTO> GetTestUsersList()
         {
             var users = _userRepository.Get("", 0, 20);
