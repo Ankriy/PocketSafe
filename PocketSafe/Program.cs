@@ -1,5 +1,6 @@
 using PocketSafe.DAL;
 using PocketSafe.DAL.Repositories.Abstact;
+using PocketSafe.PostgresMigrate;
 using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
 
@@ -14,11 +15,26 @@ builder.Services.AddScoped<TaskService>();
 builder.Services.AddScoped<UserListService>();
 builder.Services.AddScoped<TaskListService>();
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+var dbType = builder.Configuration["DbConfig:Type"];
+switch (dbType)
+{
+    case "Postgres":
+        var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionString");
+        PostgresMigrator.Migrate(connectionString);
 
-builder.Services.AddSingleton<UserMockData>();
-builder.Services.AddSingleton<TaskMockData>();
+        builder.Services.AddScoped<IUserRepository, UserPostgreeRepository>(x=> new UserPostgreeRepository(connectionString));
+        builder.Services.AddScoped<ITaskRepository, TaskPostgreeRepository>(x => new TaskPostgreeRepository(connectionString));
+        break;
+    case "Mock":
+        builder.Services.AddSingleton<UserMockData>();
+        builder.Services.AddSingleton<TaskMockData>();
+
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+        break;
+}
+
+
 
 var app = builder.Build();
 

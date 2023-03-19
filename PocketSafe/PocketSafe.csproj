@@ -4,10 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e0b882be-e2ad-47bb-8bb3-882bf87b3aba</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PocketSafe.Logic\PocketSafe.Logic.csproj" />
+    <ProjectReference Include="..\PocketSafe.PostgresMigrate\PocketSafe.PostgresMigrate.csproj" />
   </ItemGroup>
 
 </Project>
