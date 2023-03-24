@@ -43,7 +43,7 @@ namespace TaskStorageOfPeople.Logic
                 SurName = user.SurName,
                 Email = user.Email
             };
-            var task = _userRepository.Save(newUser);
+            _userRepository.Update(newUser);
             return newUser.Id;
         }
         public UserDTO GetUser(int id)
@@ -65,8 +65,8 @@ namespace TaskStorageOfPeople.Logic
                 SurName = userUpdate.SurName,
                 Email = userUpdate.Email
             };
-            var user = _userRepository.Save(listUsers);
-            return user.Id;
+            _userRepository.Update(listUsers);
+            return userUpdate.Id;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace TaskStorageOfPeople.Logic
                 Take = take
             };
 
-            var count = _userRepository.GetCount(x => true);
+            var count = _userRepository.Count();
             result.TotalCount = count;
 
             if (skip > count)
@@ -33,7 +33,7 @@ namespace TaskStorageOfPeople.Logic
             }
 
             result.Users = _userRepository
-                .Get(x => true, skip, take)
+                .Get("", skip, take)
                 .Select(x => new UserDTO()
                 {
                     Id = x.Id,
@@ -41,6 +41,7 @@ namespace TaskStorageOfPeople.Logic
                     SurName = x.SurName,
                     Email = x.Email
                 }).ToList();
+
 
             return result;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PocketSafe.DAL
+namespace PocketSafe.DAL.Repositories.Mock.Data
 {
     public class TaskMockData
     {
@@ -18,10 +18,13 @@ namespace PocketSafe.DAL
             for (int i = 1; i < 300; i++)
             {
                 int contractorId = rnd.Next(1, usersCount);
-                _tasks.Add(new Task() { Id = i, 
+                _tasks.Add(new Task()
+                {
+                    Id = i,
                     Description = $"Description of task {i}. Created {DateTime.Now.ToString()}",
-                    Subject = $"Task {i}", 
-                    UserId =  contractorId});
+                    Subject = $"Task {i}",
+                    UserId = contractorId
+                });
             }
 
         }

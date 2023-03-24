@@ -1,6 +1,6 @@
-using PocketSafe.DAL;
 using PocketSafe.DAL.Repositories.Abstact;
 using PocketSafe.DAL.Repositories.Mock;
+using PocketSafe.DAL.Repositories.Mock.Data;
 using PocketSafe.PostgresMigrate;
 using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
@@ -20,7 +20,7 @@ var dbType = builder.Configuration["DbConfig:Type"];
 switch (dbType)
 {
     case "Postgres":
-        var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionString");
+        var connectionString = "host=localhost; port=5432; database=PocketSaveDB; username=postgres; password=123;"; // builder.Configuration.GetConnectionString("NpgsqlConnectionString");
         PostgresMigrator.Migrate(connectionString);
 
         builder.Services.AddScoped<IUserRepository, UserPostgreeRepository>(x=> new UserPostgreeRepository(connectionString));

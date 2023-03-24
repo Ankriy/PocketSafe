@@ -1,5 +1,5 @@
-﻿using PocketSafe.DAL;
-using PocketSafe.DAL.Repositories.Abstact;
+﻿using PocketSafe.DAL.Repositories.Abstact;
+using PocketSafe.DAL.Repositories.Mock.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,30 +8,37 @@ namespace PocketSafe.DAL.Repositories.Mock
 {
     public class TaskMockRepository : ITaskRepository, IRepository<Task>
     {
-        private TaskMockData _testTaskData;
+        private TaskMockData _taskMockData;
 
-        public TaskMockRepository(TaskMockData testTaskData)
+        public TaskMockRepository(TaskMockData taskMockData)
         {
-            _testTaskData = testTaskData;
+            _taskMockData = taskMockData;
         }
 
 
+        public Task Create(Task item)
+        {
+            item.Id = _taskMockData.Tasks.Last().Id + 1;
+            _taskMockData.Tasks.Add(item);
+            return item;
+        }
+
         public void Delete(int id)
         {
-            var user = _testTaskData.Tasks.FirstOrDefault(x => x.Id == id);
-            _testTaskData.Tasks.Remove(user);
+            var task = _taskMockData.Tasks.SingleOrDefault(x => x.Id == id);
+            _taskMockData.Tasks.Remove(task);
         }
 
         public Task Get(int id)
         {
-            return _testTaskData
+            return _taskMockData
                 .Tasks
                 .FirstOrDefault(x => x.Id == id);
         }
 
         public ICollection<Task> Get(Func<Task, bool> where)
         {
-            return _testTaskData
+            return _taskMockData
                 .Tasks
                 .Where(where)
                 .ToList();
@@ -39,54 +46,31 @@ namespace PocketSafe.DAL.Repositories.Mock
 
         public ICollection<Task> Get(Func<Task, bool> where, int skip, int take)
         {
-            return _testTaskData
+            return _taskMockData
                 .Tasks
                 .Where(where)
                 .Skip(skip)
                 .Take(take)
                 .ToList();
         }
-        public ICollection<Task> Get(Func<Task, bool> where, int id, int skip, int take)
+        public ICollection<Task> Get(string search, int skip, int take)
         {
-            return _testTaskData
-                .Tasks
-                .Where(x => x.UserId == id)
-                .Where(where)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
+            throw new NotImplementedException();
         }
 
-        public int GetCount(Func<Task, bool> where)
+        public int Count()
         {
-            return _testTaskData
+            return _taskMockData
                 .Tasks
-                .Where(where)
-                .Count();
-        }
-        public int GetCount(Func<Task, bool> where, int id)
-        {
-            return _testTaskData
-                .Tasks
-                .Where(x => x.UserId == id)
-                .Where(where)
                 .Count();
         }
 
-        public Task Save(Task item)
+        public void Update(Task item)
         {
-            if (item.Id <= 0)
-            {
-                item.Id = _testTaskData.Tasks.Last().Id + 1;
-                _testTaskData.Tasks.Add(item);
-                return item;
-            }
-
-            var task = _testTaskData.Tasks.SingleOrDefault(x => x.Id == item.Id);
+            var task = _taskMockData.Tasks.SingleOrDefault(x => x.Id == item.Id);
             task.Subject = item.Subject;
             task.Description = item.Description;
-
-            return task;
+            task.UserId = item.UserId;
         }
     }
 }

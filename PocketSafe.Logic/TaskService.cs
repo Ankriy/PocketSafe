@@ -21,7 +21,7 @@ namespace TaskStorageOfPeople.Logic
 
         public List<TaskDTO> GetTestTasksList()
         {
-            var tasks = _taskRepository.Get(x => true);
+            var tasks = _taskRepository.Get("", 0, 10);
             var list = tasks.Select(x => new TaskDTO()
             {
                 Id = x.Id,
@@ -40,8 +40,8 @@ namespace TaskStorageOfPeople.Logic
                 Description = task.Description,
                 UserId = task.UserId
             };
-            var _task = _taskRepository.Save(newTask);
-            return _task.Id;
+            _taskRepository.Update(newTask);
+            return task.Id;
         }
         public TaskDTO GetTask(int id)
         {
@@ -62,8 +62,8 @@ namespace TaskStorageOfPeople.Logic
                 Description = taskEdit.Description,
                 UserId = taskEdit.UserId
             };
-            var task = _taskRepository.Save(listTasks);
-            return task.UserId;
+            _taskRepository.Update(listTasks);
+            return taskEdit.UserId;
         }
     }
 }

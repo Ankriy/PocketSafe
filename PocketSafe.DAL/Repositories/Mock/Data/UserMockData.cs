@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PocketSafe.DAL
+namespace PocketSafe.DAL.Repositories.Mock.Data
 {
     public class UserMockData
     {
