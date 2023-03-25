@@ -43,7 +43,7 @@ namespace TaskStorageOfPeople.Logic
                 SurName = user.SurName,
                 Email = user.Email
             };
-            _userRepository.Update(newUser);
+            _userRepository.Create(newUser);
             return newUser.Id;
         }
         public UserDTO GetUser(int id)

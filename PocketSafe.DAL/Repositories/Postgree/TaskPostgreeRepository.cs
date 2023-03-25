@@ -34,24 +34,38 @@ namespace TaskProject.DAL.Repositories
         }
         public Task Get(int id)
         {
-            var user = _connection.Query<Task>($"SELECT * FROM public.\"Task\" WHERE \"Id\" = {id}").FirstOrDefault();
-            return user;
+            var task = _connection.Query<Task>($"SELECT * FROM public.\"Task\" WHERE \"Id\" = {id}").FirstOrDefault();
+            return task;
         }
         public ICollection<Task> Get(string search, int skip, int take)
         {
             var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%'";
 
-            var users = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
-            return users ?? new List<Task>();
+            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            return tasks ?? new List<Task>();
+        }
+        public ICollection<Task> Get(string search, int skip, int take, int userid)
+        {
+            var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%' and \"UserId\" = {userid}";
+
+            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            return tasks ?? new List<Task>();
         }
         public int Count()
         {
             var count = _connection.Query($"SELECT * FROM public.\"Task\"").Count();
             return count;
         }
+        public int Count(int userid)
+        {
+            var count = _connection.Query($"SELECT * FROM public.\"Task\" Where \"UserId\" = {userid}").Count();
+            return count;
+        }
         public void Update(Task item)
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

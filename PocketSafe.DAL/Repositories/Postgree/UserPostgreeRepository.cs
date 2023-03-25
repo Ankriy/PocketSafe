@@ -21,8 +21,7 @@ namespace TaskProject.DAL.Repositories
             //item.CreatedDate = DateTime.UtcNow;
 
             var query = $"INSERT INTO public.\"User\"(\"Name\", \"Surname\", \"Email\")" +
-                $"VALUES('{item.Name}', '{item.SurName}','{item.Email}');" +
-                $"SELECT CAST(SCOPE_IDENTITY() as int)\"";
+                $"VALUES('{item.Name}', '{item.SurName}','{item.Email}') RETURNING \"Id\";";
 
             item.Id = _connection.ExecuteScalar<int>(query);
 
@@ -54,6 +53,9 @@ namespace TaskProject.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        
+        public int Count(int userid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

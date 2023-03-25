@@ -24,26 +24,26 @@ namespace TaskStorageOfPeople.Logic
                 Take = take
             };
 
-            //var count = _taskRepository.GetCount(x => true,userId);
-            //result.TotalCount = count;
+            var count = _taskRepository.Count(userId);
+            result.TotalCount = count;
 
-            //if (skip > count)
-            //{
-            //    result.Tasks = new List<TaskDTO>();
-            //    return result;
-            //}
+            if (skip > count)
+            {
+                result.Tasks = new List<TaskDTO>();
+                return result;
+            }
 
-            //result.Tasks = _taskRepository
-            //.Get(x => true, userId, skip, take)
-            //.Select(x => new TaskDTO()
-            //{
-            //    Id = x.Id,
-            //    Subject = x.Subject,
-            //    Description = x.Description,
-            //    UserId = x.UserId
-            //}).ToList();
+            result.Tasks = _taskRepository
+            .Get("", skip, take, userId)
+            .Select(x => new TaskDTO()
+            {
+                Id = x.Id,
+                Subject = x.Subject,
+                Description = x.Description,
+                UserId = x.UserId
+            }).ToList();
 
-            return new TaskListDTO();
+            return result;
         }
     }
 }

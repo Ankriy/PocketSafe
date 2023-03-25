@@ -53,7 +53,7 @@ namespace PocketSafe.DAL.Repositories.Mock
                 .Take(take)
                 .ToList();
         }
-        public ICollection<Task> Get(string search, int skip, int take)
+        public ICollection<Task> Get(string search, int skip, int take, int id)
         {
             throw new NotImplementedException();
         }
@@ -64,13 +64,24 @@ namespace PocketSafe.DAL.Repositories.Mock
                 .Tasks
                 .Count();
         }
-
+        public int Count(int userid)
+        {
+            return _taskMockData
+                .Tasks
+                .Where(x => x.UserId == userid)
+                .Count();
+        }
         public void Update(Task item)
         {
             var task = _taskMockData.Tasks.SingleOrDefault(x => x.Id == item.Id);
             task.Subject = item.Subject;
             task.Description = item.Description;
             task.UserId = item.UserId;
+        }
+
+        public ICollection<Task> Get(string search, int skip, int take)
+        {
+            throw new NotImplementedException();
         }
     }
 }

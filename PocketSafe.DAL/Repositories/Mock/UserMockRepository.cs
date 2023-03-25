@@ -72,5 +72,10 @@ namespace PocketSafe.DAL.Repositories.Mock
             user.SurName = item.SurName;
             user.Email = item.Email;
         }
+
+        public int Count(int userid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

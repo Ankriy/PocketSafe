@@ -11,6 +11,7 @@ namespace PocketSafe.DAL.Repositories.Abstact
         public void Update(T item);
         public void Delete(int id);
         int Count();
+        int Count(int userid);
         //public T Get(int id);
         //public ICollection<T> Get(Func<T, bool> where);
         //public int GetCount(Func<T, bool> where);
