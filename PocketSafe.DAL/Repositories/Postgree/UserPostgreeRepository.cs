@@ -40,7 +40,7 @@ namespace TaskProject.DAL.Repositories
         {
             var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Name\" ilike 'search%' or \"Surname\" ilike 'search%'";
 
-            var users = _connection.Query<User>($"SELECT * FROM public.\"User\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            var users = _connection.Query<User>($"SELECT * FROM public.\"User\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}").ToList();
             return users ?? new List<User>();
         }
         public int Count()
@@ -50,7 +50,7 @@ namespace TaskProject.DAL.Repositories
         }
         public void Update(User item)
         {
-            throw new NotImplementedException();
+            _connection.Execute($"UPDATE public.\"User\" SET \"Name\" = '{item.Name}', \"Surname\" = '{item.SurName}', \"Email\" = '{item.Email}' WHERE \"Id\" = {item.Id}");
         }
 
         public int Count(int userid)

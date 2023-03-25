@@ -20,9 +20,8 @@ namespace TaskProject.DAL.Repositories
         {
             //item.CreatedDate = DateTime.UtcNow;
 
-            var query = $"INSERT INTO public.\"Task\"(\"Subject\", \"Description\", \"userId\")" +
-                $"VALUES('{item.Subject}', '{item.Description}','{item.UserId}');" +
-                $"SELECT CAST(SCOPE_IDENTITY() as int)\"";
+            var query = $"INSERT INTO public.\"Task\"(\"Subject\", \"Description\", \"UserId\")" +
+                $"VALUES('{item.Subject}', '{item.Description}','{item.UserId}') RETURNING \"Id\";";
 
             item.Id = _connection.ExecuteScalar<int>(query);
 
@@ -30,7 +29,7 @@ namespace TaskProject.DAL.Repositories
         }
         public void Delete(int id)
         {
-            _connection.Execute("DELETE public.\"Task\" WHERE Id = @Id", new { Id = id });
+            _connection.Execute("DELETE public.\"Task\" WHERE \"Id\" = @Id", new { Id = id });
         }
         public Task Get(int id)
         {
@@ -63,7 +62,7 @@ namespace TaskProject.DAL.Repositories
         }
         public void Update(Task item)
         {
-            throw new NotImplementedException();
+            _connection.Execute($"UPDATE public.\"Task\" SET \"Subject\" = '{item.Subject}', \"Description\" = '{item.Description}', \"UserId\" = '{item.UserId}' WHERE \"Id\" = {item.Id}");
         }
 
         

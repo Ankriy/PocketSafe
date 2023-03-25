@@ -40,8 +40,8 @@ namespace TaskStorageOfPeople.Logic
                 Description = task.Description,
                 UserId = task.UserId
             };
-            _taskRepository.Update(newTask);
-            return task.Id;
+            _taskRepository.Create(newTask);
+            return newTask.Id;
         }
         public TaskDTO GetTask(int id)
         {
@@ -52,7 +52,7 @@ namespace TaskStorageOfPeople.Logic
                 Subject = task.Subject,
                 Description = task.Description,
                 UserId = task.UserId
-            }; ;
+            };
         }
         public object EditTask(TaskEditDTO taskEdit)
         {
