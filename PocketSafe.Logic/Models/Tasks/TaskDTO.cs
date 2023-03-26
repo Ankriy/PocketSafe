@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace PocketSafe.Logic.Models.Tasks
 {
     public class TaskDTO
@@ -8,6 +10,8 @@ namespace PocketSafe.Logic.Models.Tasks
         public int UserId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
+        public DateTime Deadline { get; set; }
+        public DateTime CreationDate { get; set; }
 
     }
 }

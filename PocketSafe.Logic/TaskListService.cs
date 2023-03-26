@@ -37,7 +37,9 @@ namespace TaskStorageOfPeople.Logic
                 Id = x.Id,
                 Subject = x.Subject,
                 Description = x.Description,
-                UserId = x.UserId
+                UserId = x.UserId,
+                Deadline = x.Deadline,
+                CreationDate = x.CreationDate
             }).ToList();
 
             return result;

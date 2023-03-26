@@ -12,6 +12,8 @@ namespace TaskWebProject.Models.Tasks
         public int UserId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
+        public DateTime Deadline { get; set; }
+        public DateTime CreationDate { get; set; }
 
 
         public TaskShortViewModel() { }
@@ -22,6 +24,8 @@ namespace TaskWebProject.Models.Tasks
             UserId = task.UserId;
             Subject = task.Subject;
             Description = task.Description;
+            Deadline = task.Deadline;
+            CreationDate = task.CreationDate;
         }
 
     }

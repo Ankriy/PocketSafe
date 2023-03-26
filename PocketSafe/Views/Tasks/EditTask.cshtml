@@ -46,6 +46,14 @@
             <label for="UserId">Id пользователя</label>
             <input type="text" name="UserId" value="@Model.UserId" />
         </div>
+        <div class="form-element">
+            <label for="UserId">Дедлайн</label>
+            <input type="text" name="Deadline" value="@Model.Deadline.ToShortDateString()" />
+        </div>
+        <div class="form-element">
+            <label for="UserId">Дата создания</label>
+            <input type="text" name="CreationDate" value="@Model.CreationDate.ToShortDateString()" />
+        </div>
 
         
         <div>

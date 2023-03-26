@@ -9,6 +9,8 @@ namespace StorageOfPeople.Models.Storage
         public int UserId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
+        public DateTime Deadline { get; set; }
+        public DateTime CreationDate { get; set; }
         static public int TotalCount { get; set; }
         static public int Skip { get; set; }
         static public int Take { get; set; }
@@ -21,6 +23,8 @@ namespace StorageOfPeople.Models.Storage
             Subject = user.Subject;
             Description = user.Description;
             UserId = user.UserId;
+            Deadline = user.Deadline;
+            CreationDate = user.CreationDate;
         }
     }
 }

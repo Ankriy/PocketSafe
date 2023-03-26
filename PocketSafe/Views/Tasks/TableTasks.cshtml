@@ -75,6 +75,8 @@
                     <th>Id</th>
                     <th>Заголовок</th>
                     <th>Описание</th>
+                    <th>Дедлайн</th>
+                    <th>Дата создания</th>
                     <th></th>
                 </tr>
                 @foreach (var tsk in Model.Tasks)
@@ -83,6 +85,8 @@
                         <td>@tsk.Id</td>
                         <td>@tsk.Subject</td>
                         <td>@tsk.Description</td>
+                        <td>@tsk.Deadline.ToShortDateString()</td>
+                        <td>@tsk.CreationDate.ToShortDateString()</td>
                         <td>
                             <div>
                                 <a href="/Tasks/EditTask/@tsk.Id" class="btn">Редактировать</a>

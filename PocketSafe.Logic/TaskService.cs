@@ -3,6 +3,7 @@ using PocketSafe.Domain.Repository;
 using PocketSafe.Logic.Models.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using T = PocketSafe.Domain.Models;
 namespace TaskStorageOfPeople.Logic
 {
@@ -23,18 +24,22 @@ namespace TaskStorageOfPeople.Logic
                 Id = x.Id,
                 Subject = x.Subject,
                 Description = x.Description,
-                UserId = x.UserId
+                UserId = x.UserId,
+                Deadline = x.Deadline,
+                CreationDate = x.CreationDate
             }).ToList();
             return list;
         }
         
         public int AddTask(TaskCreateDTO task)
         {
-            var newTask = new Task()
+            var newTask = new T.Task()
             {
                 Subject = task.Subject,
                 Description = task.Description,
-                UserId = task.UserId
+                UserId = task.UserId,
+                Deadline = task.Deadline,
+                CreationDate = task.CreationDate
             };
             _taskRepository.Create(newTask);
             return newTask.Id;
@@ -47,16 +52,20 @@ namespace TaskStorageOfPeople.Logic
                 Id = id,
                 Subject = task.Subject,
                 Description = task.Description,
-                UserId = task.UserId
+                UserId = task.UserId,
+                Deadline = task.Deadline,
+                CreationDate = task.CreationDate
             };
         }
         public object EditTask(TaskEditDTO taskEdit)
         {
-            var listTasks = new Task() {
+            var listTasks = new T.Task() {
                 Id = taskEdit.Id,
                 Subject = taskEdit.Subject,
                 Description = taskEdit.Description,
-                UserId = taskEdit.UserId
+                UserId = taskEdit.UserId,
+                Deadline = taskEdit.Deadline,
+                CreationDate = taskEdit.CreationDate
             };
             _taskRepository.Update(listTasks);
             return taskEdit.UserId;

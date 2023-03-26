@@ -58,7 +58,9 @@ namespace StorageOfPeople.Controllers
                 Id = TaskViewModel.TotalCount,
                 Subject = storage.Subject,
                 Description = storage.Description,
-                UserId = storage.UserId
+                UserId = storage.UserId,
+                Deadline = storage.Deadline,
+                CreationDate = DateTime.UtcNow
             }) ;
             return RedirectToAction("EditTask", new { id = Id});
         }
@@ -79,7 +81,9 @@ namespace StorageOfPeople.Controllers
                 Id = task.Id,
                 Subject = task.Subject,
                 Description = task.Description,
-                UserId = task.UserId
+                UserId = task.UserId,
+                Deadline = task.Deadline,
+                CreationDate = task.CreationDate
             });
 
             return RedirectToAction("TableTasks", new { id = userId});
