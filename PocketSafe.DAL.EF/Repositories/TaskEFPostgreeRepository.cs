@@ -16,35 +16,35 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public int Count()
         {
-            return _context.Tasks.Count();
+            return _context.Task.Count();
         }
 
         public int Count(int userid)
         {
-            throw new NotImplementedException();
+            return _context.Task.Where(x => x.UserId == userid).Count();
         }
 
         public T.Task Create(T.Task item)
         {
-            _context.Tasks.Add(item);
+            _context.Task.Add(item);
             _context.SaveChanges();
             return item;
         }
 
         public void Delete(int id)
         {
-            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
+            var task = _context.Task.FirstOrDefault(t => t.Id == id);
 
             if (task != null)
             {
-                _context.Tasks.Remove(task);
+                _context.Task.Remove(task);
                 _context.SaveChanges();
             }
         }
 
         public ICollection<T.Task> Get(string search, int skip, int take)
         {
-            var tasks = _context.Tasks
+            var tasks = _context.Task
                 .Where(x => string.IsNullOrEmpty(search) || x.Subject.Contains(search) || x.Description.Contains(search))
                 .Skip(skip)
                 .Take(take)
@@ -55,7 +55,7 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public T.Task? Get(int id)
         {
-            return _context.Tasks.FirstOrDefault(x => x.Id == id);
+            return _context.Task.FirstOrDefault(x => x.Id == id);
         }
 
         public ICollection<T.Task> Get(string search, int skip, int take, int userid)
@@ -65,7 +65,7 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public void Update(T.Task item)
         {
-            _context.Tasks.Update(item);
+            _context.Task.Update(item);
             _context.SaveChanges();
         }
     }

@@ -11,7 +11,7 @@ namespace PocketSafe.DAL.Repositories.Mock.Data
             _users = new List<T.User>();
             for (int i = 1; i < 23; i++)
             {
-                _users.Add(new T.User() { Id = i, Name = $"Name {i}", SurName = $"SurName {i}", Email = $"Name{i}SurName{i}@mail.ru" });
+                _users.Add(new T.User() { Id = i, Name = $"Name {i}", Surname = $"SurName {i}", Email = $"Name{i}SurName{i}@mail.ru" });
             }
 
         }

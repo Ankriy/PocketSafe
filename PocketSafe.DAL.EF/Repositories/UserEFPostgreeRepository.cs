@@ -1,4 +1,5 @@
-﻿using PocketSafe.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PocketSafe.Domain.Models;
 using PocketSafe.Domain.Repository;
 
 namespace PocketSafe.DAL.EF.Repositories
@@ -15,7 +16,7 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public int Count()
         {
-            return _context.Users.Count();
+            return _context.User.Count();
         }
 
         public int Count(int userid)
@@ -25,7 +26,9 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public User Create(User item)
         {
-            throw new NotImplementedException();
+            _context.User.Add(item);
+            _context.SaveChanges();
+            return item;
         }
 
         public void Delete(int id)
@@ -35,9 +38,9 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public ICollection<User> Get(string search, int skip, int take)
         {
-            IQueryable<User> query = _context.Users;
+            IQueryable<User> query = _context.User;
             if (!string.IsNullOrEmpty(search))
-                query = query.Where(x => x.Name.StartsWith(search) || x.SurName.StartsWith(search));
+                query = query.Where(x => x.Name.StartsWith(search) || x.Surname.StartsWith(search));
 
             var users = query
                 .Skip(skip)
@@ -49,12 +52,13 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public User? Get(int id)
         {
-            return _context.Users.FirstOrDefault(x => x.Id == id);
+            return _context.User.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(User item)
         {
-            throw new NotImplementedException();
+            _context.User.Update(item);
+            _context.SaveChanges();
         }
     }
 }

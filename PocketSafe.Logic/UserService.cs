@@ -25,7 +25,7 @@ namespace TaskStorageOfPeople.Logic
             {
                 Id = x.Id,
                 Name = x.Name,
-                SurName = x.SurName,
+                SurName = x.Surname,
                 Email = x.Email
             }).ToList();
             return list;
@@ -37,7 +37,7 @@ namespace TaskStorageOfPeople.Logic
             {
                 Id = user.Id,
                 Name = user.Name,
-                SurName = user.SurName,
+                Surname = user.SurName,
                 Email = user.Email
             };
             _userRepository.Create(newUser);
@@ -59,7 +59,7 @@ namespace TaskStorageOfPeople.Logic
             var listUsers = new User() {
                 Id = userUpdate.Id,
                 Name = userUpdate.Name,
-                SurName = userUpdate.SurName,
+                Surname = userUpdate.SurName,
                 Email = userUpdate.Email
             };
             _userRepository.Update(listUsers);

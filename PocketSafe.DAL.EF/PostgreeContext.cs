@@ -12,7 +12,7 @@ namespace PocketSafe.DAL.EF
         }
 
 
-        public DbSet<User> Users => Set<User>();
-        public DbSet<T.Task> Tasks => Set<T.Task>();
+        public DbSet<User> User => Set<User>();
+        public DbSet<T.Task> Task => Set<T.Task>();
     }
 }

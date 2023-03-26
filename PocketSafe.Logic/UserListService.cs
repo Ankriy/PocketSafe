@@ -36,7 +36,7 @@ namespace TaskStorageOfPeople.Logic
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    SurName = x.SurName,
+                    SurName = x.Surname,
                     Email = x.Email
                 }).ToList();
 

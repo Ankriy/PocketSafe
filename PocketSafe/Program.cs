@@ -8,6 +8,8 @@ using PocketSafe.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using PocketSafe.DAL.EF;
 using PocketSafe.DAL.EF.Repositories;
+using System;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,7 @@ switch (dbType)
         var connectionString = "host=localhost; port=5432; database=PocketSaveDB; username=postgres; password=123;"; // builder.Configuration.GetConnectionString("NpgsqlConnectionString");
         PostgresMigrator.Migrate(connectionString);
 
-        builder.Services.AddScoped<IUserRepository, UserPostgreeRepository>(x=> new UserPostgreeRepository(connectionString));
+        builder.Services.AddScoped<IUserRepository, UserPostgreeRepository>(x => new UserPostgreeRepository(connectionString));
         builder.Services.AddScoped<ITaskRepository, TaskPostgreeRepository>(x => new TaskPostgreeRepository(connectionString));
         break;
     case "Mock":
@@ -42,8 +44,10 @@ switch (dbType)
         PostgresMigrator.Migrate(connectionStringEF);
 
         builder.Services.AddDbContext<PostgreeContext>(
-            options => options.UseNpgsql(connectionStringEF));
-
+            options => {
+                options.UseNpgsql(connectionStringEF);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        });
 
         builder.Services.AddScoped<ITaskRepository, TaskEFPostgreeRepository>();
         builder.Services.AddScoped<IUserRepository, UserEFPostgreeRepository>();

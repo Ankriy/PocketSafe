@@ -68,7 +68,7 @@ namespace PocketSafe.DAL.Repositories.Mock
         {
             var user = _testUserData.Users.SingleOrDefault(x => x.Id == item.Id);
             user.Name = item.Name;
-            user.SurName = item.SurName;
+            user.Surname = item.Surname;
             user.Email = item.Email;
         }
 

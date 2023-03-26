@@ -18,7 +18,7 @@ namespace TaskProject.DAL.Repositories
             //item.CreatedDate = DateTime.UtcNow;
 
             var query = $"INSERT INTO public.\"User\"(\"Name\", \"Surname\", \"Email\")" +
-                $"VALUES('{item.Name}', '{item.SurName}','{item.Email}') RETURNING \"Id\";";
+                $"VALUES('{item.Name}', '{item.Surname}','{item.Email}') RETURNING \"Id\";";
 
             item.Id = _connection.ExecuteScalar<int>(query);
 
@@ -47,7 +47,7 @@ namespace TaskProject.DAL.Repositories
         }
         public void Update(User item)
         {
-            _connection.Execute($"UPDATE public.\"User\" SET \"Name\" = '{item.Name}', \"Surname\" = '{item.SurName}', \"Email\" = '{item.Email}' WHERE \"Id\" = {item.Id}");
+            _connection.Execute($"UPDATE public.\"User\" SET \"Name\" = '{item.Name}', \"Surname\" = '{item.Surname}', \"Email\" = '{item.Email}' WHERE \"Id\" = {item.Id}");
         }
 
         public int Count(int userid)
