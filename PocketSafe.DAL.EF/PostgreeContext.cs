@@ -2,7 +2,7 @@
 using PocketSafe.Domain.Models;
 using T = PocketSafe.Domain.Models;
 
-namespace TaskProject.DAL.EF
+namespace PocketSafe.DAL.EF
 {
     public class PostgreeContext : DbContext
     {

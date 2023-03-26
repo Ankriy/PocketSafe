@@ -1,7 +1,8 @@
 ﻿using PocketSafe.Domain.Repository;
+using PocketSafe.DAL.EF;
 using T = PocketSafe.Domain.Models;
 
-namespace TaskProject.DAL.EF.Repositories
+namespace PocketSafe.DAL.EF.Repositories
 {
     public class TaskEFPostgreeRepository : ITaskRepository, IRepository<T.Task>
     {

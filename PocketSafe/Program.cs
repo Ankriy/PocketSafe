@@ -5,6 +5,9 @@ using PocketSafe.PostgresMigrate;
 using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
 using PocketSafe.Domain.Repository;
+using Microsoft.EntityFrameworkCore;
+using PocketSafe.DAL.EF;
+using PocketSafe.DAL.EF.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +36,17 @@ switch (dbType)
 
         builder.Services.AddScoped<IUserRepository, UserMockRepository>();
         builder.Services.AddScoped<ITaskRepository, TaskMockRepository>();
+        break;
+    case "EF":
+        var connectionStringEF = "host=localhost; port=5432; database=PocketSaveDB; username=postgres; password=123;";  //builder.Configuration.GetConnectionString("NpgsqlConnectionString");
+        PostgresMigrator.Migrate(connectionStringEF);
+
+        builder.Services.AddDbContext<PostgreeContext>(
+            options => options.UseNpgsql(connectionStringEF));
+
+
+        builder.Services.AddScoped<ITaskRepository, TaskEFPostgreeRepository>();
+        builder.Services.AddScoped<IUserRepository, UserEFPostgreeRepository>();
         break;
 }
 

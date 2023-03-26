@@ -1,10 +1,7 @@
 ﻿using PocketSafe.Domain.Models;
 using PocketSafe.Domain.Repository;
-using System.Linq.Expressions;
-using TaskProject.Domain.Models.Users;
-using TaskProject.Domain.Repositories.Abstact;
 
-namespace TaskProject.DAL.EF.Repositories
+namespace PocketSafe.DAL.EF.Repositories
 {
     public class UserEFPostgreeRepository : IUserRepository, IRepository<User>
     {
@@ -21,6 +18,11 @@ namespace TaskProject.DAL.EF.Repositories
             return _context.Users.Count();
         }
 
+        public int Count(int userid)
+        {
+            throw new NotImplementedException();
+        }
+
         public User Create(User item)
         {
             throw new NotImplementedException();
@@ -35,7 +37,7 @@ namespace TaskProject.DAL.EF.Repositories
         {
             IQueryable<User> query = _context.Users;
             if (!string.IsNullOrEmpty(search))
-                query = query.Where(x => x.Name.StartsWith(search) || x.Surname.StartsWith(search));
+                query = query.Where(x => x.Name.StartsWith(search) || x.SurName.StartsWith(search));
 
             var users = query
                 .Skip(skip)
