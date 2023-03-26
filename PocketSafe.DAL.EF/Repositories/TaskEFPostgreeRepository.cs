@@ -1,6 +1,7 @@
 ﻿using PocketSafe.Domain.Repository;
 using PocketSafe.DAL.EF;
 using T = PocketSafe.Domain.Models;
+using PocketSafe.Domain.Models;
 
 namespace PocketSafe.DAL.EF.Repositories
 {
@@ -60,7 +61,18 @@ namespace PocketSafe.DAL.EF.Repositories
 
         public ICollection<T.Task> Get(string search, int skip, int take, int userid)
         {
-            throw new NotImplementedException();
+            IQueryable<T.Task> query = _context.Task;
+            if (!string.IsNullOrEmpty(search))
+                query = query.Where(x => x.Subject.StartsWith(search) || x.Description.StartsWith(search));
+
+            var tasks = query
+                .OrderBy(p => p.Id)
+                .Where(x => x.UserId == userid)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+
+            return tasks;
         }
 
         public void Update(T.Task item)

@@ -20,7 +20,7 @@ namespace TaskStorageOfPeople.Logic
         }
         public List<UserDTO> GetTestUsersList()
         {
-            var users = _userRepository.Get("", 0, 20);
+            var users = _userRepository.Get("", 0, 20000000);
             var list = users.Select(x => new UserDTO()
             {
                 Id = x.Id,

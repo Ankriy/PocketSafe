@@ -17,7 +17,7 @@ namespace TaskStorageOfPeople.Logic
 
         public List<TaskDTO> GetTestTasksList()
         {
-            var tasks = _taskRepository.Get("", 0, 10);
+            var tasks = _taskRepository.Get("", 0, 100000);
             var list = tasks.Select(x => new TaskDTO()
             {
                 Id = x.Id,

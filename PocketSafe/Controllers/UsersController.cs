@@ -61,7 +61,7 @@ namespace StorageOfPeople.Controllers
         {
             if(id != null)
             {
-                var user = _userService.GetUser((int)id);
+                var user = _userService.GetUser(id.Value);
                 var model = new UserViewModel(user);
                 return View(model);
             }

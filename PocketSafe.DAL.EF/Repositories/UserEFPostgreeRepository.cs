@@ -43,6 +43,7 @@ namespace PocketSafe.DAL.EF.Repositories
                 query = query.Where(x => x.Name.StartsWith(search) || x.Surname.StartsWith(search));
 
             var users = query
+                .OrderBy(p => p.Id)
                 .Skip(skip)
                 .Take(take)
                 .ToList();
