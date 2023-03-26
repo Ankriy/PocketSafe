@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
-
+using T = PocketSafe.Domain.Models;
 namespace PocketSafe.DAL.Repositories.Mock.Data
 {
     public class UserMockData
     {
-        private List<User> _users;
+        private List<T.User> _users;
 
         public UserMockData()
         {
-            _users = new List<User>();
+            _users = new List<T.User>();
             for (int i = 1; i < 23; i++)
             {
-                _users.Add(new User() { Id = i, Name = $"Name {i}", SurName = $"SurName {i}", Email = $"Name{i}SurName{i}@mail.ru" });
+                _users.Add(new T.User() { Id = i, Name = $"Name {i}", SurName = $"SurName {i}", Email = $"Name{i}SurName{i}@mail.ru" });
             }
 
         }
 
-        public List<User> Users => _users;
+        public List<T.User> Users => _users;
 
     }
 }

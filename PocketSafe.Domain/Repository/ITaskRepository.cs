@@ -1,7 +1,8 @@
-﻿using PocketSafe.DAL.Repositories.Abstact;
+﻿
+using PocketSafe.Domain.Models;
 using System.Collections.Generic;
 
-namespace PocketSafe.DAL.Repositories.Abstact
+namespace PocketSafe.Domain.Repository
 {
     public interface ITaskRepository : IRepository<Task>
     {

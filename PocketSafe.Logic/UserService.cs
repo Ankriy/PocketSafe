@@ -1,11 +1,8 @@
-﻿using PocketSafe.DAL;
-using PocketSafe.DAL.Repositories.Abstact;
+﻿using PocketSafe.Domain.Models;
+using PocketSafe.Domain.Repository;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TaskStorageOfPeople.Logic.Models;
 using TaskStorageOfPeople.Logic.Models.Users;
-using T = PocketSafe.DAL.Repositories.Abstact;
 
 namespace TaskStorageOfPeople.Logic
 {
@@ -36,7 +33,7 @@ namespace TaskStorageOfPeople.Logic
         
         public int AddUser(UserCreateDTO user)
         {
-            var newUser = new PocketSafe.DAL.User()
+            var newUser = new User()
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -59,7 +56,7 @@ namespace TaskStorageOfPeople.Logic
         }
         public object EditUser(UserEditDTO userUpdate)
         {
-            var listUsers = new PocketSafe.DAL.User() {
+            var listUsers = new User() {
                 Id = userUpdate.Id,
                 Name = userUpdate.Name,
                 SurName = userUpdate.SurName,

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace PocketSafe.DAL.Repositories.Abstact
+namespace PocketSafe.Domain.Repository
 {
     public interface IRepository<T>
     {

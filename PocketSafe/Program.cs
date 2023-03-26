@@ -1,9 +1,10 @@
-using PocketSafe.DAL.Repositories.Abstact;
+using PocketSafe.Domain.Models;
 using PocketSafe.DAL.Repositories.Mock;
 using PocketSafe.DAL.Repositories.Mock.Data;
 using PocketSafe.PostgresMigrate;
 using TaskProject.DAL.Repositories;
 using TaskStorageOfPeople.Logic;
+using PocketSafe.Domain.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,12 +1,10 @@
-﻿using PocketSafe.DAL.Repositories.Abstact;
-using PocketSafe.DAL.Repositories.Mock.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PocketSafe.DAL.Repositories.Mock.Data;
+using PocketSafe.Domain.Repository;
+using T = PocketSafe.Domain.Models;
 
 namespace PocketSafe.DAL.Repositories.Mock
 {
-    public class TaskMockRepository : ITaskRepository, IRepository<Task>
+    public class TaskMockRepository : ITaskRepository, IRepository<T.Task>
     {
         private TaskMockData _taskMockData;
 
@@ -16,7 +14,7 @@ namespace PocketSafe.DAL.Repositories.Mock
         }
 
 
-        public Task Create(Task item)
+        public T.Task Create(T.Task item)
         {
             item.Id = _taskMockData.Tasks.Last().Id + 1;
             _taskMockData.Tasks.Add(item);
@@ -29,14 +27,14 @@ namespace PocketSafe.DAL.Repositories.Mock
             _taskMockData.Tasks.Remove(task);
         }
 
-        public Task Get(int id)
+        public T.Task Get(int id)
         {
             return _taskMockData
                 .Tasks
                 .FirstOrDefault(x => x.Id == id);
         }
 
-        public ICollection<Task> Get(Func<Task, bool> where)
+        public ICollection<T.Task> Get(Func<T.Task, bool> where)
         {
             return _taskMockData
                 .Tasks
@@ -44,7 +42,7 @@ namespace PocketSafe.DAL.Repositories.Mock
                 .ToList();
         }
 
-        public ICollection<Task> Get(Func<Task, bool> where, int skip, int take)
+        public ICollection<T.Task> Get(Func<T.Task, bool> where, int skip, int take)
         {
             return _taskMockData
                 .Tasks
@@ -53,7 +51,7 @@ namespace PocketSafe.DAL.Repositories.Mock
                 .Take(take)
                 .ToList();
         }
-        public ICollection<Task> Get(string search, int skip, int take, int id)
+        public ICollection<T.Task> Get(string search, int skip, int take, int id)
         {
             throw new NotImplementedException();
         }
@@ -71,7 +69,7 @@ namespace PocketSafe.DAL.Repositories.Mock
                 .Where(x => x.UserId == userid)
                 .Count();
         }
-        public void Update(Task item)
+        public void Update(T.Task item)
         {
             var task = _taskMockData.Tasks.SingleOrDefault(x => x.Id == item.Id);
             task.Subject = item.Subject;
@@ -79,7 +77,7 @@ namespace PocketSafe.DAL.Repositories.Mock
             task.UserId = item.UserId;
         }
 
-        public ICollection<Task> Get(string search, int skip, int take)
+        public ICollection<T.Task> Get(string search, int skip, int take)
         {
             throw new NotImplementedException();
         }

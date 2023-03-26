@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PocketSafe.DAL
+namespace PocketSafe.Domain.Models
 {
     public class Task
     {

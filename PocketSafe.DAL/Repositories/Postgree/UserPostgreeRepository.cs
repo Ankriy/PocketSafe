@@ -1,10 +1,7 @@
 ﻿using Dapper;
 using Npgsql;
-using PocketSafe.DAL;
-using PocketSafe.DAL.Repositories.Abstact;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PocketSafe.Domain.Models;
+using PocketSafe.Domain.Repository;
 
 namespace TaskProject.DAL.Repositories
 {

@@ -1,14 +1,11 @@
 ﻿using Dapper;
 using Npgsql;
-using PocketSafe.DAL;
-using PocketSafe.DAL.Repositories.Abstact;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PocketSafe.Domain.Repository;
+using T = PocketSafe.Domain.Models;
 
 namespace TaskProject.DAL.Repositories
 {
-    public class TaskPostgreeRepository : ITaskRepository, IRepository<Task>
+    public class TaskPostgreeRepository : ITaskRepository, IRepository<T.Task>
     {
         private readonly NpgsqlConnection _connection;
 
@@ -16,7 +13,7 @@ namespace TaskProject.DAL.Repositories
         {
             _connection = new NpgsqlConnection(connectionString);
         }
-        public Task Create(Task item)
+        public T.Task Create(T.Task item)
         {
             //item.CreatedDate = DateTime.UtcNow;
 
@@ -31,24 +28,24 @@ namespace TaskProject.DAL.Repositories
         {
             _connection.Execute("DELETE public.\"Task\" WHERE \"Id\" = @Id", new { Id = id });
         }
-        public Task Get(int id)
+        public T.Task Get(int id)
         {
-            var task = _connection.Query<Task>($"SELECT * FROM public.\"Task\" WHERE \"Id\" = {id}").FirstOrDefault();
+            var task = _connection.Query<T.Task>($"SELECT * FROM public.\"Task\" WHERE \"Id\" = {id}").FirstOrDefault();
             return task;
         }
-        public ICollection<Task> Get(string search, int skip, int take)
+        public ICollection<T.Task> Get(string search, int skip, int take)
         {
             var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%'";
 
-            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
-            return tasks ?? new List<Task>();
+            var tasks = _connection.Query<T.Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            return tasks ?? new List<T.Task>();
         }
-        public ICollection<Task> Get(string search, int skip, int take, int userid)
+        public ICollection<T.Task> Get(string search, int skip, int take, int userid)
         {
             var searchQuery = string.IsNullOrWhiteSpace(search) ? $"WHERE \"UserId\" = {userid}" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%' and \"UserId\" = {userid}";
             string a = $"SELECT * FROM public.\"Task\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}";
-            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}").ToList();
-            return tasks ?? new List<Task>();
+            var tasks = _connection.Query<T.Task>($"SELECT * FROM public.\"Task\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}").ToList();
+            return tasks ?? new List<T.Task>();
         }
         public int Count()
         {
@@ -60,7 +57,7 @@ namespace TaskProject.DAL.Repositories
             var count = _connection.Query($"SELECT * FROM public.\"Task\" Where \"UserId\" = {userid}").Count();
             return count;
         }
-        public void Update(Task item)
+        public void Update(T.Task item)
         {
             _connection.Execute($"UPDATE public.\"Task\" SET \"Subject\" = '{item.Subject}', \"Description\" = '{item.Description}', \"UserId\" = '{item.UserId}' WHERE \"Id\" = {item.Id}");
         }

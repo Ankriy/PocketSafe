@@ -1,8 +1,4 @@
-﻿using PocketSafe.DAL.Repositories.Abstact;
-using System;
-using System.Collections.Generic;
-
-namespace PocketSafe.DAL.Repositories
+﻿namespace PocketSafe.DAL.Repositories
 {
     //public abstract class Repository<T> : IRepository<T>
     //{

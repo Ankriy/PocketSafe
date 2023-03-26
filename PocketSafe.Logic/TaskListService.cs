@@ -1,10 +1,7 @@
-﻿using PocketSafe.DAL.Repositories.Abstact;
+﻿using PocketSafe.Domain.Repository;
 using PocketSafe.Logic.Models.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TaskStorageOfPeople.Logic.Models;
-using TaskStorageOfPeople.Logic.Models.Users;
 
 namespace TaskStorageOfPeople.Logic
 {

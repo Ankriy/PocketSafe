@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PocketSafe.DAL\PocketSafe.DAL.csproj" />
+    <ProjectReference Include="..\PocketSafe.Domain\PocketSafe.Domain.csproj" />
     <ProjectReference Include="..\PocketSafe.Logic\PocketSafe.Logic.csproj" />
     <ProjectReference Include="..\PocketSafe.PostgresMigrate\PocketSafe.PostgresMigrate.csproj" />
   </ItemGroup>
