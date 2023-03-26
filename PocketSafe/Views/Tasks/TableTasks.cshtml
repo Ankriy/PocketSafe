@@ -62,11 +62,12 @@
 </style>
 
 <div class="center">
-
+    
 <form method="post">
         <fieldset>
             
             <div>
+                <a href="/Tasks/AddTask/@Model.Id" class="btn">Добавить</a>
                 <label class="counter">Всего @Model.TotalCount записей </label>
             </div>
             <table border="1" width="100%">
@@ -85,7 +86,7 @@
                         <td>
                             <div>
                                 <a href="/Tasks/EditTask/@tsk.Id" class="btn">Редактировать</a>
-                                <a href="/Tasks/AddTask/@tsk.UserId" class="btn">Добавить</a>
+                                @*<a href="/Tasks/AddTask/@tsk.UserId" class="btn">Добавить</a>*@
                             </div>
                         </td>
                     </tr>

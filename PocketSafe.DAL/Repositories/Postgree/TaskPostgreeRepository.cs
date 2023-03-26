@@ -45,9 +45,9 @@ namespace TaskProject.DAL.Repositories
         }
         public ICollection<Task> Get(string search, int skip, int take, int userid)
         {
-            var searchQuery = string.IsNullOrWhiteSpace(search) ? "" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%' and \"UserId\" = {userid}";
-
-            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} OFFSET {skip} LIMIT {take}").ToList();
+            var searchQuery = string.IsNullOrWhiteSpace(search) ? $"WHERE \"UserId\" = {userid}" : $"WHERE \"Subject\" ilike 'search%' or \"Description\" ilike 'search%' and \"UserId\" = {userid}";
+            string a = $"SELECT * FROM public.\"Task\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}";
+            var tasks = _connection.Query<Task>($"SELECT * FROM public.\"Task\" {searchQuery} ORDER BY \"Id\" OFFSET {skip} LIMIT {take}").ToList();
             return tasks ?? new List<Task>();
         }
         public int Count()

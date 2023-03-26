@@ -70,16 +70,16 @@ namespace StorageOfPeople.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult EditTask(TaskEditViewModel user)
+        public IActionResult EditTask(TaskEditViewModel task)
         {
             var listUsers = _taskService.GetTestTasksList();
 
             var userId = _taskService.EditTask(new TaskEditDTO()
             {
-                Id = user.Id,
-                Subject = user.Subject,
-                Description = user.Description,
-                UserId = user.UserId
+                Id = task.Id,
+                Subject = task.Subject,
+                Description = task.Description,
+                UserId = task.UserId
             });
 
             return RedirectToAction("TableTasks", new { id = userId});
