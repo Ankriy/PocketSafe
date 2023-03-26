@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.Logic", "PocketS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.PostgresMigrate", "PocketSafe.PostgresMigrate\PocketSafe.PostgresMigrate.csproj", "{F3BE7CAC-4709-4598-AC86-11507B1D67C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketSafe.DAL", "PocketSafe.DAL\PocketSafe.DAL.csproj", "{636F0562-3929-4D28-A03F-1BD3D1E40BE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.DAL", "PocketSafe.DAL\PocketSafe.DAL.csproj", "{636F0562-3929-4D28-A03F-1BD3D1E40BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketSafe.Domain", "PocketSafe.Domain\PocketSafe.Domain.csproj", "{287960B6-B06D-4FD3-837E-DB0B83C779C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketSafe.Domain", "PocketSafe.Domain\PocketSafe.Domain.csproj", "{287960B6-B06D-4FD3-837E-DB0B83C779C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketSafe.DAL.EF", "PocketSafe.DAL.EF\PocketSafe.DAL.EF.csproj", "{0986DC0B-8BBA-4A6B-9532-B285216DA2EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{287960B6-B06D-4FD3-837E-DB0B83C779C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{287960B6-B06D-4FD3-837E-DB0B83C779C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{287960B6-B06D-4FD3-837E-DB0B83C779C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0986DC0B-8BBA-4A6B-9532-B285216DA2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0986DC0B-8BBA-4A6B-9532-B285216DA2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0986DC0B-8BBA-4A6B-9532-B285216DA2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0986DC0B-8BBA-4A6B-9532-B285216DA2EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
