@@ -20,7 +20,6 @@ namespace StorageOfPeople.Controllers
         {
             _userService = userService;
             _userListService = userListService;
-            //some text
         }
 
         [HttpGet]
