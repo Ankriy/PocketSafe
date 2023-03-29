@@ -26,9 +26,12 @@
     .submit{
         margin-left:104px;
     }
+    .hide{
+        display:none
+    }
 </style>
 
-<div class="topdiv">Редактирование задания</div>
+<div class="topdiv">Редактирование задания от @Model.CreationDate.ToShortDateString()</div>
 
 
 <form method="post" class="create-task-form">
@@ -42,7 +45,7 @@
             <label for="Description">Описание</label>
             <textarea cols="50" rows="10" name="Description">@Model.Description</textarea>
         </div>
-        <div class="form-element">
+        <div class="hide">
             <label for="UserId">Id пользователя</label>
             <input type="text" name="UserId" value="@Model.UserId" />
         </div>
@@ -50,7 +53,7 @@
             <label for="UserId">Дедлайн</label>
             <input type="text" name="Deadline" value="@Model.Deadline.ToShortDateString()" />
         </div>
-        <div class="form-element">
+        <div class="hide">
             <label for="UserId">Дата создания</label>
             <input type="text" name="CreationDate" value="@Model.CreationDate.ToShortDateString()" />
         </div>

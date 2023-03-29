@@ -19,6 +19,10 @@
     .submit{
         margin-left:104px;
     }
+
+    .hide {
+        display: none
+    }
 </style>
 
 <div class="topdiv">Новый пользователь</div>
@@ -34,13 +38,13 @@
             <label for="Subject">Описание</label>
             <textarea cols="50" rows="10" name="Description"></textarea>
         </div>
-        <div class="form-element">
+        <div class="hide">
             <label for="Subject">Id пользователя</label>
             <input type="text" name="UserId" value="@ViewData["UserId"]" />
         </div>
         <div class="form-element">
             <label for="Subject">Дедлайн</label>
-            <input type="text" name="Deadline" value="@ViewData["UserId"]" />
+            <input type="text" name="Deadline" value="" />
         </div>
         
         <div>
