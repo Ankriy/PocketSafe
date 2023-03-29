@@ -2,12 +2,8 @@
 
 
 <style>
-    .create-task-form div {
-        margin-bottom: 10px;
-    }
     button {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin: 10px;
         background-color: #d0e3f3;
     }
     .counter{
@@ -15,13 +11,7 @@
         padding: 3px;
         border: 2px solid black;
         width: 150px;
-        margin-left:142px;
     }
-    .BtnAdd{
-        padding: 3px;
-        width: 150px;
-    }
-
     .btn {
         display: inline-block; /* Строчно-блочный элемент */
         background: #8C959D; /* Серый цвет фона */
@@ -32,37 +22,46 @@
         float:left;
         margin-left:4px;
         margin-right:4px;
+        line-height:1;
     }
-    .BtnReturn {
+    .BtnR {
         font-size:18px;
     }
     .divv{
-        width: 1100px;
         text-align: center;
     }
-
-    .BtnNext {
-        font-size: 18px;
-    }
     TABLE {
-        width: 50%;
         min-width: 700px;
         border-collapse: collapse;
         background-color: #d0e3f3;
     }
-    /*td{width: 150px}*/
     TD, TH {
         padding: 3px; 
-        border: 2px solid black; 
+        border: 1px solid black; 
+        text-indent: 5px;
     }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+    }
+
+    .buttons {
+        display: flexible;
+        align-content: center;
+        border-bottom: 20px;
+    }
+    
 </style>
 
-<div class="center">
+<div class="container">
 
 <form method="post">
         <fieldset>
             
-            <div>
+            <div class="buttons">
                 <a class="btn" asp-controller="Users" asp-action="AddUser">Добавить</a>
                 <label class="counter">Всего @Model.TotalCount записей </label>
             </div>
@@ -95,11 +94,11 @@
             <p class="divv">
                 @if (Model.CanBack)
                 {
-                    <a class="BtnReturn" href="/Users/?page=@(Model.Page - 1)">Back</a>
+                    <a class="BtnR" href="/Users/?page=@(Model.Page - 1)">Back</a>
                 }
                 @if (Model.CanForward)
                 {
-                    <a class="BtnNext" href="/Users/?page=@(Model.Page + 1)">Forward</a>
+                    <a class="BtnR" href="/Users/?page=@(Model.Page + 1)">Forward</a>
                 }
             </p>
         </fieldset>
