@@ -12,7 +12,7 @@ namespace TaskWebProject.Models.Tasks
 
         public int TotalCount { get; set; }
         public int Page { get; set; }
-        public int Size { get; set; }
+        public int PageSize { get; set; }
 
         public bool CanBack { get; set; }
         public bool CanForward { get; set; }
@@ -32,10 +32,10 @@ namespace TaskWebProject.Models.Tasks
 
             TotalCount = list.TotalCount;
             Page = page;
-            Size = size;
+            PageSize = size;
 
             CanBack = Page > 0;
-            CanForward = (Page + 1) * Size < TotalCount;
+            CanForward = (Page + 1) * PageSize < TotalCount;
             CanBack = Page > 0;
         }
 

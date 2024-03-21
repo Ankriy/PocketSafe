@@ -32,8 +32,6 @@ namespace StorageOfPeople.Controllers
             var model = new UserListViewModel(userList, page , size);
 
             return View(model);
-
-
         }
         [HttpPost]
         public IActionResult TableUsers()
